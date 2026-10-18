@@ -1,0 +1,150 @@
+/* Visual gallery page. */
+.section {
+  padding-block: 100px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 750;
+  color: #8c2f34;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.eyebrow:before {
+  content: '';
+  display: inline-block;
+  width: 25px;
+  height: 2px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+
+.lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #52687a;
+}
+
+.galleryMain h1 {
+  max-width: 900px;
+}
+
+.galleryMain > .section > .lead {
+  max-width: 750px;
+  margin-bottom: 25px;
+}
+
+.galleryList {
+  display: grid;
+  gap: 70px;
+  margin-top: 70px;
+}
+
+.galleryList > article {
+  border-top: 1px solid #d0dfe9;
+  padding-top: 22px;
+}
+
+.galleryLabel {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 23px;
+}
+
+.galleryLabel > span {
+  font-size: 12px;
+  color: #8c2f34;
+}
+
+.galleryLabel > h2 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.galleryList img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #d0dfe9;
+}
+
+.galleryDownloads {
+  display: flex;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.galleryDownloads > a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 650;
+  color: #163e64;
+}
+
+.galleryDownloads svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 1180px) {
+  .section {
+    padding-block: 80px;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding-block: 62px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    margin-bottom: 16px;
+    letter-spacing: 0.12em;
+  }
+
+  .lead {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .galleryMain h1 {
+    font-size: 38px;
+  }
+
+  .galleryLabel {
+    gap: 15px;
+  }
+
+  .galleryLabel > h2 {
+    font-size: 19px;
+  }
+
+  .galleryLabel > span {
+    font-size: 11px;
+  }
+
+  .galleryDownloads {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .galleryList {
+    gap: 45px;
+    margin-top: 45px;
+  }
+}
+
+@media print {
+  .section {
+    padding-block: 30px;
+    break-inside: avoid;
+  }
+}

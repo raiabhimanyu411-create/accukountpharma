@@ -1,92 +1,46 @@
-import { useEffect, useState } from 'react'
-import './styles.css'
+// Primitives load before the shell so its responsive overrides win, as in the original single stylesheet.
+import './styles/Site.module.css'
+import './styles/Shared.module.css'
+import { useEffect, useMemo, useState } from 'react'
+import { Dialogs } from './components/Dialogs.jsx'
+import { Footer } from './components/Footer.jsx'
+import { Gallery } from './components/Gallery.jsx'
+import { Header } from './components/Header.jsx'
+import { translations } from './content.js'
+import { HomePage } from './HomePage.jsx'
+import { initialLanguage, LanguageContext, STORAGE_KEY } from './i18n.js'
 
-const initialState = {
-  gallery: window.location.pathname.endsWith('visuals.html'),
-  movement: 0,
-  route: 0,
-  mode: 0,
-  workflow: 0,
-  quantity: 0,
-  bulk: 12,
-  receipts: [24, 24, 22, 24],
-  expiry: 4,
-  dashTab: 0,
-  location: 'all',
-  search: '',
-}
-
-function loadScript(path) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script')
-    script.src = `${import.meta.env.BASE_URL}${path}`
-    script.onload = resolve
-    script.onerror = () => reject(new Error(`Unable to load ${path}`))
-    document.head.appendChild(script)
-  })
-}
-
-function initialLanguage() {
-  const requested = new URLSearchParams(window.location.search).get('lang')
-  if (requested === 'en' || requested === 'fr') return requested
-
-  try {
-    const saved = localStorage.getItem('accukount-language')
-    if (saved === 'en' || saved === 'fr') return saved
-  } catch (error) {
-    console.error('Unable to read the saved website language.', error)
-  }
-
-  return 'en'
-}
+const isGallery = window.location.pathname.endsWith('visuals.html')
 
 function App() {
-  const [page, setPage] = useState('')
-  const [error, setError] = useState('')
+  const [lang, setLanguage] = useState(initialLanguage)
+  const t = translations[lang]
+  const language = useMemo(() => ({ t, lang, setLanguage }), [t, lang])
 
+  // Keep the document metadata, saved preference and ?lang= in step with the language.
   useEffect(() => {
-    let active = true
-
-    async function renderPage() {
-      try {
-        await loadScript('site/content.js')
-        await loadScript('site/render.js')
-
-        if (!active) return
-
-        const language = initialLanguage()
-        const content = window.PHARMA_CONTENT[language]
-        setPage(window.PHARMA_RENDER.renderPage(content, initialState))
-      } catch (loadError) {
-        console.error('Unable to initialize the ACCUKOUNT Pharma page.', loadError)
-        if (active) setError('This page could not be loaded. Please refresh and try again.')
-      }
+    document.documentElement.lang = t.locale
+    document.title = isGallery ? `${t.gallery} | ACCUKOUNT Pharma` : t.title
+    document.querySelector('meta[name="description"]').content = t.description
+    try {
+      localStorage.setItem(STORAGE_KEY, lang)
+    } catch (error) {
+      console.error('Unable to save the website language.', error)
     }
+    const url = new URL(window.location.href)
+    url.searchParams.set('lang', lang)
+    history.replaceState(null, '', url)
+  }, [t, lang])
 
-    renderPage()
-    return () => {
-      active = false
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!page) return undefined
-
-    let active = true
-    loadScript('site/app.js').catch((loadError) => {
-      console.error('Unable to load the ACCUKOUNT Pharma interactions.', loadError)
-      if (active) setError('Some page interactions could not be loaded. Please refresh and try again.')
-    })
-
-    return () => {
-      active = false
-    }
-  }, [page])
-
-  if (error) return <main role="alert">{error}</main>
-  if (!page) return <main aria-busy="true" />
-
-  return <div id="app" dangerouslySetInnerHTML={{ __html: page }} />
+  return (
+    <LanguageContext value={language}>
+      <Dialogs>
+        <Header gallery={isGallery} />
+        {isGallery ? <Gallery /> : <HomePage />}
+        <Footer />
+      </Dialogs>
+    </LanguageContext>
+  )
 }
 
 export default App
