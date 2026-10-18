@@ -283,6 +283,47 @@
   fill: #fff;
 }
 
+/* Filled partner to Request Demo; the .nav > prefix outranks the nav link rules. */
+.nav > .signIn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 18px;
+  border: 1.5px solid #8c2f34;
+  border-radius: 999px;
+  background: #8c2f34;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background 0.18s,
+    border-color 0.18s,
+    transform 0.18s;
+}
+
+.nav > .signIn::after {
+  display: none;
+}
+
+.nav > .signIn svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  flex-shrink: 0;
+}
+
+.nav > .signIn:hover {
+  background: #73222a;
+  border-color: #73222a;
+  transform: translateY(-1px);
+}
+
 .language {
   display: flex;
   align-items: center;
@@ -323,15 +364,15 @@
     font-size: 12px;
   }
 
-  .requestDemo {
+  .requestDemo,
+  .nav > .signIn {
     padding: 8px 14px;
     font-size: 12px;
   }
 }
 
-/* Below this width the links move into a drop-down menu. */
-
-@media (max-width: 990px) {
+/* Below this width the links and both pills move into a drop-down menu. */
+@media (max-width: 1080px) {
   .headerInner {
     height: 76px;
     gap: 16px;
@@ -407,6 +448,14 @@
     align-self: flex-start;
     font-size: 14px;
     padding: 9px 20px;
+  }
+
+  .nav > .signIn {
+    margin-top: 10px;
+    align-self: flex-start;
+    padding: 9px 20px;
+    font-size: 14px;
+    border-bottom: 1.5px solid #8c2f34;
   }
 }
 

@@ -6,12 +6,11 @@ export const translations = {
     title: 'ACCUKOUNT Pharma | From records to verified shelf reality',
     description:
       'Bilingual smartphone and web inventory verification for Canadian pharmacies. Verify tote receipts, reconcile stock, track batches and act on expiry risk.',
-    nav: ['The challenge', 'Platform', 'Workflows', 'Integrations', 'Benefits', 'Pilot'],
+    nav: ['The Challenge', 'Platform', 'Workflows', 'Integrations', 'Benefits', 'Pilot'],
     navIds: ['challenge', 'platform', 'workflows', 'integrations', 'benefits', 'pilot'],
     cta: 'Explore a pharmacy pilot',
     demoCta: 'Request a demonstration',
-    see: 'See how it works',
-    eyebrow: 'Built for Canadian pharmacies',
+    eyebrow: 'Built for Canadian Pharmacies',
     hero: ['From electronic records to', 'verified shelf reality.'],
     heroCopy:
       'Know what arrived. Know what is on the shelf. Know what expires next. A bilingual smartphone and web platform that connects physical inventory evidence with your existing pharmacy systems.',
@@ -442,6 +441,13 @@ export const translations = {
     languageGroup: 'Website language',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    requestDemo: 'Request Demo',
+    signIn: 'Sign In',
+    getStarted: 'Get Started',
+    learnMore: 'Learn More',
+    appStores: 'Download the app',
+    googlePlay: ['Get it on', 'Google Play'],
+    appStore: ['Download on the', 'App Store'],
     heroAlt:
       'The presentation’s pharmacist verifying a medication carton with a smartphone beside the ACCUKOUNT dashboard',
     toteAlt: 'The same pharmacist verifies a medication carton above a supplier tote',
@@ -450,7 +456,7 @@ export const translations = {
     heroSlides: [
       [
         'Your System Says Available.\nMake Sure Your Shelf Agrees.',
-        'Verify physical stock using ordinary smartphones and reconcile it with your pharmacy records. Identify discrepancies, reduce inventory uncertainty and give your team greater confidence when a patient needs their medication.',
+        'Verify physical stock using  smartphones and reconcile it with your pharmacy records. Identify discrepancies, reduce inventory uncertainty and give your team greater confidence when a patient needs their medication.',
       ],
       [
         'Catch Delivery Errors.\nBefore They Reach Your Shelves.',
@@ -474,7 +480,6 @@ export const translations = {
     navIds: ['challenge', 'platform', 'workflows', 'integrations', 'benefits', 'pilot'],
     cta: 'Explorer un projet pilote',
     demoCta: 'Demander une démonstration',
-    see: 'Découvrir le fonctionnement',
     eyebrow: 'Conçu pour les pharmacies canadiennes',
     hero: ['Des données électroniques au', 'stock physique vérifié.'],
     heroCopy:
@@ -918,6 +923,13 @@ export const translations = {
     languageGroup: 'Langue du site',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
+    requestDemo: 'Demander une démo',
+    signIn: 'Connexion',
+    getStarted: 'Commencer',
+    learnMore: 'En savoir plus',
+    appStores: 'Télécharger l’application',
+    googlePlay: ['Disponible sur', 'Google Play'],
+    appStore: ['Télécharger dans', 'l’App Store'],
     heroAlt:
       'Pharmacienne de la présentation vérifiant une boîte avec un téléphone, près du tableau de bord ACCUKOUNT',
     toteAlt: 'La même pharmacienne vérifie un carton au-dessus d’un bac fournisseur',

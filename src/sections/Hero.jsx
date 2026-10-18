@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { StoreBadges } from '../components/StoreBadges.jsx'
 import { Badge, ContactPill, Icon, PillButton } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import { cx } from '../lib/cx.js'
@@ -42,6 +43,28 @@ function useHeroRotation(count) {
   return { active, show, next: () => show((active + 1) % count), slide }
 }
 
+// Height of the active slide in a stack, so the stack is only as tall as the message on
+// screen instead of the tallest one. The first measurement applies at once; later changes
+// (a new message, a resize) animate through the CSS height transition.
+function useActiveHeight(ref, index) {
+  const [size, setSize] = useState({ height: undefined, animate: false })
+
+  useEffect(() => {
+    const slide = ref.current?.children[Math.max(index, 0)]
+    if (!slide || !('ResizeObserver' in window)) return undefined
+    const observer = new ResizeObserver(() =>
+      setSize((current) => ({
+        height: slide.offsetHeight,
+        animate: current.height !== undefined,
+      })),
+    )
+    observer.observe(slide)
+    return () => observer.disconnect()
+  }, [ref, index])
+
+  return size
+}
+
 function SlideLines({ text }) {
   const lines = text.split('\n')
   // The space keeps the lines apart in the heading's accessible name; the spans are blocks.
@@ -58,6 +81,10 @@ export function Hero() {
   const slides = t.heroSlides
   const { active, show, next, slide } = useHeroRotation(slides.length)
   const [paused, setPaused] = useState(false)
+  const titles = useRef(null)
+  const copies = useRef(null)
+  const titleSize = useActiveHeight(titles, active)
+  const copySize = useActiveHeight(copies, active)
 
   // Pause while the pointer or keyboard focus is in the hero, so the copy can be read.
   const pause = {
@@ -90,14 +117,23 @@ export function Hero() {
             {t.eyebrow}
           </Badge>
           {/* Inactive titles are hidden from assistive tech, so the heading reads as the current message. */}
-          <h1 id="hero-title" className={styles.heroTitles}>
+          <h1
+            ref={titles}
+            id="hero-title"
+            className={cx(styles.heroTitles, titleSize.animate && styles.heroResizing)}
+            style={{ height: titleSize.height }}
+          >
             {slides.map(([title], i) => (
               <span key={i} className={slide(i)} aria-hidden={active !== i}>
                 <SlideLines text={title} />
               </span>
             ))}
           </h1>
-          <div className={styles.heroCopies}>
+          <div
+            ref={copies}
+            className={cx(styles.heroCopies, copySize.animate && styles.heroResizing)}
+            style={{ height: copySize.height }}
+          >
             {slides.map(([, copy], i) => (
               <p
                 key={i}
@@ -109,11 +145,12 @@ export function Hero() {
             ))}
           </div>
           <div className={styles.heroActions} data-hero-item="">
-            <ContactPill icon="rocket">{t.cta}</ContactPill>
+            <ContactPill icon="rocket">{t.getStarted}</ContactPill>
             <PillButton variant="outline" icon="play" href="#platform">
-              {t.see}
+              {t.learnMore}
             </PillButton>
           </div>
+          <StoreBadges data-hero-item="" />
           <div
             className={styles.heroDots}
             role="group"

@@ -251,8 +251,24 @@ h1.heroTitles {
   font-size: clamp(36px, 3.6vw, 50px);
 }
 
+/* The stacks take the active slide's height (set from Hero.jsx); the copy's paragraph
+   margin moves to the stack so it still sits below the measured height. */
+.heroCopies {
+  margin-bottom: 20px;
+}
+
+.heroCopies .heroCopy {
+  margin-bottom: 0;
+}
+
+.heroResizing {
+  transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .heroSlide {
   grid-area: 1 / 1;
+  /* Keep each slide at its own height so the active one can be measured. */
+  align-self: start;
   visibility: hidden;
 }
 
@@ -311,6 +327,58 @@ h1.heroTitles {
     transform 0.5s ease-in;
 }
 
+.storeBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.storeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 160px;
+  padding: 8px 18px 8px 14px;
+  border: 1px solid #c9d0d6;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  line-height: 1.15;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    transform 0.18s;
+}
+
+.storeBadge:hover {
+  border-color: #8c2f34;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.storeBadge svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.storeBadge span {
+  display: flex;
+  flex-direction: column;
+}
+
+.storeBadge small {
+  font-size: 11px;
+  color: #666;
+}
+
+.storeBadge b {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
 .heroDots {
   display: flex;
   gap: 8px;
@@ -364,6 +432,7 @@ h1.heroTitles {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .heroResizing,
   .heroSlide,
   .heroSlide .heroLine > span {
     transition: none !important;
