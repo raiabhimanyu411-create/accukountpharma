@@ -22,15 +22,6 @@ export function ArrowButton({ children, className, type = 'button', ...props }) 
   )
 }
 
-export function ContactButton({ children, className, interest }) {
-  const { openContact } = useDialogs()
-  return (
-    <ArrowButton className={className} onClick={(e) => openContact(e.currentTarget, interest)}>
-      {children}
-    </ArrowButton>
-  )
-}
-
 // Filled icons for the pill buttons, shared so every call to action looks the same.
 const PILL_ICONS = {
   rocket:

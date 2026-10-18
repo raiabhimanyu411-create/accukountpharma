@@ -26,7 +26,7 @@
 .lead {
   font-size: 18px;
   line-height: 1.7;
-  color: #52687a;
+  color: #636363;
 }
 
 .galleryMain h1 {
@@ -85,7 +85,7 @@
   gap: 9px;
   font-size: 11px;
   font-weight: 650;
-  color: #163e64;
+  color: #000;
 }
 
 .galleryDownloads svg {

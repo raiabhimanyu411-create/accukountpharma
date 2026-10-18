@@ -27,7 +27,7 @@ function DriftChart({ t, movement: n }) {
         {[40, 180, 320, 460, 600, 740, 860].map((x) => (
           <circle key={x} cx={x} cy="100" r="6" fill="#163e64" />
         ))}
-        <text x="40" y="66" fill="#163e64" fontSize="18" fontFamily={CHART_FONT}>
+        <text x="40" y="66" fill="#000" fontSize="18" fontFamily={CHART_FONT}>
           {t.record}
         </text>
         <text x="620" y="275" fill="#8c2f34" fontSize="18" fontFamily={CHART_FONT}>

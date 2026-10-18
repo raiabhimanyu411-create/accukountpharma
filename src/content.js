@@ -441,6 +441,7 @@ export const translations = {
     mainNav: 'Main navigation',
     languageGroup: 'Website language',
     openMenu: 'Open menu',
+    closeMenu: 'Close menu',
     heroAlt:
       'The presentation’s pharmacist verifying a medication carton with a smartphone beside the ACCUKOUNT dashboard',
     toteAlt: 'The same pharmacist verifies a medication carton above a supplier tote',
@@ -916,6 +917,7 @@ export const translations = {
     mainNav: 'Navigation principale',
     languageGroup: 'Langue du site',
     openMenu: 'Ouvrir le menu',
+    closeMenu: 'Fermer le menu',
     heroAlt:
       'Pharmacienne de la présentation vérifiant une boîte avec un téléphone, près du tableau de bord ACCUKOUNT',
     toteAlt: 'La même pharmacienne vérifie un carton au-dessus d’un bac fournisseur',

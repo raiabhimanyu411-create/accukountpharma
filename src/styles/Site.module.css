@@ -21,7 +21,7 @@
 }
 
 .muted {
-  color: #607383;
+  color: #6f6f6f;
 }
 
 .srOnly {
@@ -77,7 +77,7 @@
 .button.lightButton {
   background: #fff;
   border-color: #fff;
-  color: #163e64;
+  color: #000;
 }
 
 .button.lightButton:hover {
@@ -86,7 +86,7 @@
 
 .button.outline {
   background: transparent;
-  color: #163e64;
+  color: #000;
   border-color: #b4c4d0;
 }
 
@@ -106,7 +106,7 @@
   gap: 12px;
   font-size: 13px;
   font-weight: 750;
-  color: #163e64;
+  color: #000;
   padding: 8px 0;
   text-decoration: underline;
   text-decoration-color: #acbecb;

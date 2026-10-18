@@ -49,7 +49,7 @@
 .lead {
   font-size: 18px;
   line-height: 1.7;
-  color: #52687a;
+  color: #636363;
 }
 
 /* ASSETKOUNT pattern: section badge, masked heading lines and pill calls to action. */
@@ -146,7 +146,7 @@
 
 .pillOutline {
   background: #fff;
-  color: #163e64;
+  color: #000;
 }
 
 .pillOutline svg {
@@ -174,7 +174,6 @@
 .heroBadge svg {
   width: 16px;
   height: 16px;
-  fill: none;
 }
 
 .workflowPill,
@@ -185,7 +184,7 @@
 .sampleNote {
   font-size: 10px;
   letter-spacing: 0.04em;
-  color: #71818e;
+  color: #7e7e7e;
   line-height: 1.5;
 }
 
@@ -384,7 +383,7 @@ h1.heroTitles {
   max-width: 495px;
   font-size: 16px;
   line-height: 1.8;
-  color: #3c546a;
+  color: #4f4f4f;
 }
 
 .heroActions {
@@ -428,7 +427,7 @@ h1.heroTitles {
   font-weight: 650;
   line-height: 1.5;
   border-right: 1px solid #dce6ed;
-  color: #163e64;
+  color: #000;
 }
 
 .capabilityStrip span:first-child {
@@ -483,7 +482,7 @@ h1.heroTitles {
   background: #f4f7fa;
   border: 1px solid #dce6ed;
   padding: 30px 24px 40px;
-  color: #163e64;
+  color: #000;
 }
 
 .realitySystem,
@@ -614,7 +613,7 @@ h1.heroTitles {
   display: flex;
   align-items: center;
   gap: 17px;
-  color: #163e64;
+  color: #000;
   font-size: 14px;
 }
 
@@ -638,7 +637,7 @@ h1.heroTitles {
   font-size: 11px;
   border-right: 1px solid #cbdbe6;
   position: relative;
-  color: #526b7e;
+  color: #666666;
 }
 
 .movementTabs button:last-child {
@@ -713,7 +712,7 @@ h1.heroTitles {
   align-items: center;
   flex-direction: column;
   gap: 12px;
-  color: #163e64;
+  color: #000;
   font-size: 12px;
   text-align: center;
 }
@@ -726,7 +725,7 @@ h1.heroTitles {
 .mapFlow {
   text-align: center;
   font-size: 12px;
-  color: #5a7285;
+  color: #6d6d6d;
   margin: 22px 0 16px;
 }
 
@@ -786,12 +785,12 @@ h1.heroTitles {
 
 .layerHalves strong {
   font-size: 16px;
-  color: #163e64;
+  color: #000;
 }
 
 .layerHalves small {
   font-size: 11px;
-  color: #52687a;
+  color: #636363;
   max-width: 290px;
 }
 
@@ -802,7 +801,7 @@ h1.heroTitles {
   justify-content: center;
   margin: 25px 0;
   font-size: 12px;
-  color: #163e64;
+  color: #000;
 }
 
 .mapApproval svg {
@@ -910,7 +909,7 @@ h1.heroTitles {
   display: block;
   letter-spacing: 0.18em;
   font-size: 7px;
-  color: #163e64;
+  color: #000;
   margin-top: 3px;
 }
 
@@ -933,7 +932,7 @@ h1.heroTitles {
 .phoneScan > svg {
   width: 75px;
   height: 75px;
-  color: #163e64;
+  color: #000;
   stroke-width: 0.7;
 }
 
@@ -972,7 +971,7 @@ h1.heroTitles {
 .phoneValue > b {
   font-size: 28px;
   line-height: 1.2;
-  color: #163e64;
+  color: #000;
 }
 
 .phoneMeta {
@@ -1041,7 +1040,7 @@ h1.heroTitles {
 }
 
 .brandMini > span {
-  color: #163e64;
+  color: #000;
 }
 
 .brandMini > em {
@@ -1054,13 +1053,13 @@ h1.heroTitles {
 .miniNav > b {
   font-size: 7px;
   letter-spacing: 0.14em;
-  color: #163e64;
+  color: #000;
 }
 
 .miniTitle {
   font-size: 11px;
   font-weight: 700;
-  color: #163e64;
+  color: #000;
   margin: 12px 0;
 }
 
@@ -1123,7 +1122,7 @@ h1.heroTitles {
 .miniDashboard > p {
   font-size: 6px;
   margin: 10px 0 0;
-  color: #6a7e8e;
+  color: #7a7a7a;
 }
 
 .deviceSync {
@@ -1134,7 +1133,7 @@ h1.heroTitles {
   gap: 9px;
   align-items: center;
   font-size: 11px;
-  color: #163e64;
+  color: #000;
 }
 
 .deviceSync svg {
@@ -1152,7 +1151,7 @@ h1.heroTitles {
   padding: 18px 20px;
   font-size: 13px;
   font-weight: 700;
-  color: #526a7b;
+  color: #656565;
   line-height: 1.5;
   position: relative;
 }
@@ -1196,7 +1195,7 @@ h1.heroTitles {
 
 .routeArt > small {
   font-size: 9px;
-  color: #607383;
+  color: #6f6f6f;
   text-align: center;
 }
 
@@ -1274,12 +1273,12 @@ h1.heroTitles {
 .dinArt b {
   font-size: 29px;
   letter-spacing: 0.1em;
-  color: #163e64;
+  color: #000;
 }
 
 .dinArt > span {
   font-size: 10px;
-  color: #607383;
+  color: #6f6f6f;
 }
 
 .routeExplain h3 {
@@ -1303,7 +1302,7 @@ h1.heroTitles {
   align-items: center;
   gap: 7px;
   font-size: 11px;
-  color: #163e64;
+  color: #000;
 }
 
 .dataFields svg {
@@ -1444,7 +1443,7 @@ h1.heroTitles {
   width: 100px;
   padding: 7px 12px;
   background: #fff;
-  color: #163e64;
+  color: #000;
   border: 1px solid #fff;
   min-height: 42px;
 }
@@ -1527,7 +1526,7 @@ h1.heroTitles {
 
 .tableLine.head {
   font-size: 10px;
-  color: #667e90;
+  color: #797979;
 }
 
 .tableLine small {
@@ -1593,7 +1592,7 @@ h1.heroTitles {
   text-align: center;
   font-size: 24px;
   font-weight: 700;
-  color: #163e64;
+  color: #000;
   border: 1px solid #c2d4e1;
   background: #fff;
 }
@@ -1633,7 +1632,7 @@ h1.heroTitles {
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #163e64;
+  color: #000;
   border-bottom: 1px solid #d3e1eb;
   padding-bottom: 20px;
 }
@@ -1737,7 +1736,7 @@ h1.heroTitles {
   line-height: 1.6;
   padding: 7px 9px;
   border: 1px solid #d3e1eb;
-  color: #46657c;
+  color: #5e5e5e;
 }
 
 .expiryTabs > button[aria-selected='true'] {
@@ -1756,7 +1755,7 @@ h1.heroTitles {
 
 .expiryTotal > span {
   font-size: 11px;
-  color: #697f90;
+  color: #7a7a7a;
 }
 
 .expiryTotal > strong {
@@ -1783,7 +1782,7 @@ h1.heroTitles {
 .expiryLine small {
   display: block;
   font-size: 8px;
-  color: #6a7e8e;
+  color: #7a7a7a;
   margin-top: 3px;
 }
 
@@ -1837,7 +1836,7 @@ h1.heroTitles {
   margin-left: auto;
   width: 17px;
   height: 17px;
-  color: #92a8b9;
+  color: #a3a3a3;
 }
 
 .integrationTarget {
@@ -1845,7 +1844,7 @@ h1.heroTitles {
   border: 1px solid #d3e2ec;
   padding: 40px;
   text-align: center;
-  color: #163e64;
+  color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1880,7 +1879,7 @@ h1.heroTitles {
   margin: 36px 0 0;
   font-size: 11px;
   line-height: 1.8;
-  color: #536d81;
+  color: #686868;
 }
 
 .integrationNote svg {
@@ -1945,7 +1944,7 @@ h1.heroTitles {
   border: 1px solid #cbdae5;
   padding: 10px 14px;
   font-size: 11px;
-  color: #163e64;
+  color: #000;
   background: #fff;
   min-height: 42px;
 }
@@ -1966,7 +1965,7 @@ h1.heroTitles {
   padding: 15px 0;
   font-size: 10px;
   font-weight: 650;
-  color: #536c7e;
+  color: #676767;
   line-height: 1.5;
   text-align: left;
   flex: 1;
@@ -2000,7 +1999,7 @@ h1.heroTitles {
 .tableScroll th {
   text-align: left;
   font-size: 10px;
-  color: #597286;
+  color: #6d6d6d;
   padding: 12px 8px;
   border-bottom: 1px solid #d2e0ea;
 }
@@ -2015,7 +2014,7 @@ h1.heroTitles {
 .tableScroll td small {
   display: block;
   font-size: 9px;
-  color: #637b8e;
+  color: #767676;
 }
 
 .tableStatus {
@@ -2029,7 +2028,7 @@ h1.heroTitles {
 .resultCount {
   font-size: 9px;
   margin: 16px 8px 0;
-  color: #718595;
+  color: #818181;
 }
 
 .dashboardDemo + .dashboardDemoSmall {
@@ -2130,7 +2129,7 @@ h1.heroTitles {
   align-items: center;
   gap: 12px;
   font-size: 11px;
-  color: #163e64;
+  color: #000;
 }
 
 .canadaFeatures svg {
@@ -2192,7 +2191,7 @@ h1.heroTitles {
 
 .canadaSeal > span {
   font-size: 9px;
-  color: #163e64;
+  color: #000;
 }
 
 .networkPoints {
@@ -2295,7 +2294,7 @@ h1.heroTitles {
 
 .pilotRoadmap p {
   font-size: 11px;
-  color: #607586;
+  color: #717171;
   line-height: 1.7;
 }
 
@@ -2363,7 +2362,7 @@ h1.heroTitles {
   list-style: none;
   cursor: pointer;
   font-size: 12px;
-  color: #163e64;
+  color: #000;
   font-weight: 650;
   display: flex;
   gap: 30px;
@@ -2389,7 +2388,7 @@ h1.heroTitles {
 
 .faqBlock details p {
   font-size: 12px;
-  color: #526b7f;
+  color: #666666;
   line-height: 1.8;
 }
 
