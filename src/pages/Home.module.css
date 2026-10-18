@@ -510,29 +510,47 @@ h1.heroTitles {
   }
 }
 
-/* Each feature spans two rows of the list grid (title, note) through subgrid, so every
-   title shares one row and every note starts on the same line. */
+/* Capabilities chain: the boxes scroll endlessly; the track holds the set twice and
+   moves by half its width, so the loop joins without a jump. Each box carries its own
+   right margin (not a flex gap) so that half the track is exactly one set. */
 
-/* Capabilities: five separate white boxes on the grey band; subgrid keeps every
-   title and note on the same lines across the boxes. */
+.marquee {
+  overflow: hidden;
+  padding-block: 10px 20px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
 
-.capabilityList {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-block: 0;
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  margin: 0;
   padding: 0;
   list-style: none;
+  animation: capabilityChain 40s linear infinite;
+}
+
+.marquee:hover .marqueeTrack,
+.marquee:focus-within .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes capabilityChain {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .capability {
+  flex: none;
   display: grid;
-  grid-row: span 2;
-  grid-template-rows: subgrid;
   grid-template-columns: 40px 1fr;
+  grid-template-rows: auto 1fr;
   column-gap: 12px;
   row-gap: 5px;
   align-items: start;
+  width: 300px;
+  margin-right: 16px;
   padding: 22px 20px;
   border: 1px solid #e6ebef;
   border-radius: 14px;
@@ -550,45 +568,47 @@ h1.heroTitles {
   transform: translateY(-3px);
 }
 
-@media (max-width: 1180px) {
-  .capabilityList {
-    gap: 12px;
-  }
-
+@media (max-width: 760px) {
   .capability {
-    grid-template-columns: 36px 1fr;
-    column-gap: 10px;
-    padding: 18px 14px;
+    width: 260px;
+    margin-right: 12px;
+    padding: 18px 16px;
+  }
+
+  .marqueeTrack {
+    animation-duration: 32s;
   }
 }
 
-/* Two columns, with the fifth box across the full width. */
-
-@media (max-width: 990px) {
-  .capabilityList {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .capability:last-child {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 520px) {
-  .capabilityList {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .capability {
-    padding: 15px 16px;
-  }
-}
+/* Without motion the chain stands still as a wrapped row of the five boxes. */
 
 @media (prefers-reduced-motion: reduce) {
+  .marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marqueeTrack {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    width: auto;
+    padding-inline: 16px;
+    animation: none;
+  }
+
   .capability {
+    margin-right: 0;
     transition: none;
   }
+
+  .marqueeTrack > [aria-hidden='true'] {
+    display: none;
+  }
+}
+
+.capability strong > span {
+  display: block;
 }
 
 .capabilityIcon {
@@ -597,20 +617,9 @@ h1.heroTitles {
   place-items: center;
   width: 40px;
   height: 40px;
-  border-radius: 11px;
+  border-radius: 50%;
   background: #8c2f34;
   color: #fff;
-}
-
-.capability strong > span {
-  display: block;
-}
-
-/* One column: the boxes are wide, so the title parts run together on one line. */
-@media (max-width: 520px) {
-  .capability strong > span {
-    display: inline;
-  }
 }
 
 .capabilityIcon svg {
@@ -638,7 +647,7 @@ h1.heroTitles {
   .capabilityIcon {
     width: 36px;
     height: 36px;
-    border-radius: 10px;
+    border-radius: 50%;
   }
 
   .capability strong {

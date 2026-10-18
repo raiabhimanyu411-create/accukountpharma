@@ -5,9 +5,16 @@ import site from '../styles/Site.module.css'
 
 const CAPABILITY_ICONS = ['phone', 'language', 'scan', 'check', 'link']
 
-// The five capabilities the platform runs on, in a white panel on a grey band.
+// The five capabilities the platform runs on, as a chain of boxes that scrolls endlessly.
+// The set is rendered twice so the loop is seamless; the copy is hidden from assistive tech.
+// Hovering or focusing the chain pauses it, and with reduced motion it stays still.
 export function Capabilities() {
   const { t } = useLanguage()
+  const items = t.strip.map((title, i) => ({
+    title,
+    note: t.stripNotes[i],
+    icon: CAPABILITY_ICONS[i],
+  }))
 
   return (
     <section className={styles.how} aria-labelledby="capabilities-title">
@@ -15,23 +22,28 @@ export function Capabilities() {
         <h2 id="capabilities-title" className={styles.capabilitiesLabel} data-reveal="">
           {t.capabilitiesLabel}
         </h2>
-        <ul className={styles.capabilityList} data-stagger="" data-draw-icons="">
-          {t.strip.map((item, i) => (
-            <li key={i} className={styles.capability}>
+      </div>
+      <div className={styles.marquee} data-reveal="">
+        <ul className={styles.marqueeTrack}>
+          {[...items, ...items].map(({ title, note, icon }, i) => (
+            <li
+              key={i}
+              className={styles.capability}
+              aria-hidden={i >= items.length ? 'true' : undefined}
+            >
               <span className={styles.capabilityIcon}>
-                <Icon name={CAPABILITY_ICONS[i]} />
+                <Icon name={icon} />
               </span>
               <strong>
-                {/* Each title breaks at the same point, so every box has a two-line title;
-                    narrow layouts run the parts together on one line. */}
-                {item.split('\n').map((part, j) => (
+                {/* Each title breaks at the same point, so every box has a two-line title. */}
+                {title.split('\n').map((part, j) => (
                   <span key={j}>
                     {j > 0 && ' '}
                     {part}
                   </span>
                 ))}
               </strong>
-              <small>{t.stripNotes[i]}</small>
+              <small>{note}</small>
             </li>
           ))}
         </ul>
