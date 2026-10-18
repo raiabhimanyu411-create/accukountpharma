@@ -16,12 +16,12 @@ export function Challenge() {
 
   return (
     <section
-      className={`${styles.section} ${styles.challenge}`}
+      className={`${styles.section} ${styles.photoSection}`}
       id="challenge"
       aria-labelledby="challenge-title"
     >
       <img
-        className={styles.challengeBg}
+        className={styles.photoBg}
         src="assets/inventory-disconnect.jpg"
         width="537"
         height="545"

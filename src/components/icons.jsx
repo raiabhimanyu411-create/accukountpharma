@@ -118,6 +118,17 @@ export const icons = {
       <path d="M3 7h17l-4-4M21 17H4l4 4" />
     </>
   ),
+  pill: (
+    <>
+      <path d="M4.6 12.4l7.8-7.8a4.6 4.6 0 0 1 6.5 6.5l-7.8 7.8a4.6 4.6 0 0 1-6.5-6.5zM8.5 8.5l6.5 6.5" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4" />
+    </>
+  ),
   return: (
     <>
       <path d="M7 4L2 9l5 5M2 9h12a7 7 0 0 1 0 14" />

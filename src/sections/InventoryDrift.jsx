@@ -1,91 +1,119 @@
-import { useState } from 'react'
-import { Icon, SectionHead, TabPanel, Tabs } from '../components/ui.jsx'
+import { Fragment } from 'react'
+import { Badge, Icon, Lines, PillButton } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import styles from '../pages/Home.module.css'
 import site from '../styles/Site.module.css'
 
-const MOVEMENT_ICONS = ['box', 'document', 'return', 'transfer', 'sliders', 'clock']
-const CHART_FONT = 'Arial,sans-serif'
+const MOVEMENT_ICONS = ['box', 'pill', 'return', 'transfer', 'sliders', 'calendar']
 
-// The dashed "shelf reality" line drops further from the record with each movement.
-function DriftChart({ t, movement: n }) {
-  const y = 176 + n * 16
-  const drop = (step, value) => (n > step ? value : 110)
+// The chart has one column per movement plus a final column for the end state. The record
+// stays level at RECORD_Y while the shelf drops a little further with every movement. The
+// svg stretches sideways only, so y values are pixels and the dots are placed as html.
+const COLUMNS = 7
+const RECORD_Y = 14
+const SHELF_Y = [14, 36, 54, 72, 94, 116, 136]
+const columnX = (i) => (i + 0.5) * 100
+const columnLeft = (i) => `${((i + 0.5) / COLUMNS) * 100}%`
+
+function DriftChart({ t }) {
+  const last = COLUMNS - 1
+  const shelf = SHELF_Y.map((y, i) => `${columnX(i)} ${y}`).join(' L')
 
   return (
-    <div className={styles.driftChart}>
-      <svg viewBox="0 0 900 290" role="img" aria-label={t.driftLabel}>
-        <path d={`M40 100H860L860 ${y}L40 100`} fill="#8c2f34" opacity=".08" />
-        <path d="M40 100H860" fill="none" stroke="#163e64" strokeWidth="4" />
-        <path
-          d={`M40 100L180 110L320 ${drop(0, 135)}L460 ${drop(1, 155)}L600 ${drop(2, 180)}L740 ${drop(3, 205)}L860 ${y}`}
-          fill="none"
-          stroke="#8c2f34"
-          strokeWidth="4"
-          strokeDasharray="7 7"
-        />
-        {[40, 180, 320, 460, 600, 740, 860].map((x) => (
-          <circle key={x} cx={x} cy="100" r="6" fill="#163e64" />
+    <div className={styles.driftChart} role="img" aria-label={t.driftChartLabel}>
+      <div className={styles.driftGraph} aria-hidden="true">
+        <svg viewBox={`0 0 ${COLUMNS * 100} 150`} preserveAspectRatio="none">
+          <path d={`M${shelf} L${columnX(last)} ${RECORD_Y}Z`} fill="#8c2f34" opacity=".07" />
+          <path
+            d={`M${columnX(0)} ${RECORD_Y}H${columnX(last)}`}
+            fill="none"
+            stroke="#163e64"
+            strokeWidth="3"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d={`M${shelf}`}
+            fill="none"
+            stroke="#8c2f34"
+            strokeWidth="2.5"
+            strokeDasharray="7 6"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+        {SHELF_Y.map((y, i) => (
+          <Fragment key={i}>
+            <i className={styles.driftDot} style={{ left: columnLeft(i), top: RECORD_Y }} />
+            {i > 0 && (
+              <i
+                className={i === last ? styles.driftEnd : styles.driftDrop}
+                style={{ left: columnLeft(i), top: y }}
+              />
+            )}
+          </Fragment>
         ))}
-        <text x="40" y="66" fill="#000" fontSize="18" fontFamily={CHART_FONT}>
-          {t.record}
-        </text>
-        <text x="620" y="275" fill="#8c2f34" fontSize="18" fontFamily={CHART_FONT}>
-          {t.reality}
-        </text>
-        <path d={`M845 114V${y - 8}`} stroke="#8c2f34" strokeWidth="2" />
-        <text
-          x="760"
-          y={y + 30}
-          fill="#8c2f34"
-          fontSize="16"
-          textAnchor="end"
-          fontFamily={CHART_FONT}
-        >
-          {t.driftLabel}
-        </text>
-      </svg>
-      <p className={styles.sampleNote}>{t.example}</p>
+        <i className={styles.driftArrow} style={{ left: columnLeft(last) }} />
+        <span className={styles.driftSync}>{t.inSync}</span>
+      </div>
+      <ul className={styles.driftLegend} aria-hidden="true">
+        <li className={styles.driftRecord}>{t.record}</li>
+        <li className={styles.driftGap}>{t.driftLabel}</li>
+        <li className={styles.driftShelf}>{t.reality}</li>
+      </ul>
     </div>
   )
 }
 
+// Where drift begins: the six stock movements over a chart of the shelf falling away from
+// the record, with the pharmacy photo filling the right side.
 export function InventoryDrift() {
   const { t } = useLanguage()
-  const [movement, setMovement] = useState(0)
+  const [badge, title, lead] = t.drift
 
   return (
     <section
-      className={`${styles.section} ${styles.pale}`}
+      className={`${styles.section} ${styles.photoSection} ${styles.drift}`}
       id="inventory-drift"
       aria-labelledby="inventory-drift-title"
     >
+      <img
+        className={styles.photoBg}
+        src="assets/inventory-drift.jpg"
+        width="511"
+        height="809"
+        loading="lazy"
+        alt=""
+      />
       <div className={site.wrap}>
-        <SectionHead content={t.drift} id="inventory-drift" />
-        <p className={`${site.small} ${site.muted}`}>{t.selectMovement}</p>
-        <Tabs
-          data-reveal=""
-          id="movement"
-          labels={t.movements}
-          active={movement}
-          onChange={setMovement}
-          panelId="drift-panel"
-          className={styles.movementTabs}
-          label={t.selectMovement}
-          renderTab={(label, i) => (
-            <>
-              <Icon name={MOVEMENT_ICONS[i]} />
-              <span>{label}</span>
-            </>
-          )}
-        />
-        <TabPanel data-reveal="" id="drift-panel" tabsId="movement" active={movement}>
-          <DriftChart t={t} movement={movement} />
-          <div className={styles.movementDetail} role="status">
-            <b>{`${String(movement + 1).padStart(2, '0')} / ${t.movements[movement]}`}</b>
-            <p>{t.movementCopy[movement]}</p>
+        <div className={styles.driftCopy}>
+          <Badge>{badge}</Badge>
+          <Lines id="inventory-drift-title" text={title} />
+          <p className={styles.lead} data-reveal="">
+            {lead}
+          </p>
+          <div className={styles.driftFlow}>
+            <ol className={styles.driftMoves} data-stagger="" data-draw-icons="">
+              {t.movements.map((label, i) => (
+                <li key={i}>
+                  <span className={styles.driftIcon}>
+                    <Icon name={MOVEMENT_ICONS[i]} />
+                  </span>
+                  {label}
+                </li>
+              ))}
+            </ol>
+            <div data-reveal="">
+              <DriftChart t={t} />
+            </div>
           </div>
-        </TabPanel>
+          <p className={styles.driftNote} data-reveal="">
+            {t.driftNote}
+          </p>
+          <div data-reveal="">
+            <PillButton variant="outline" href="#smartphone-web">
+              {t.driftCta}
+            </PillButton>
+          </div>
+        </div>
       </div>
     </section>
   )
