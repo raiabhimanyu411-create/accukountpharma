@@ -462,94 +462,19 @@ h1.heroTitles {
   margin-top: 32px;
 }
 
-/* How it works: three connected step cards, then the capabilities they run on. */
+/* Capabilities band: a white panel of five features on light grey. */
 
 .how {
+  /* A white gap keeps the band apart from the hero photo, whose light lower half
+     otherwise runs straight into the grey. */
+  margin-top: 40px;
   background: #f5f6f7;
-}
-
-.steps {
-  --step-pad: 30px;
-  --step-gap: 24px;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--step-gap);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  padding-block: 56px 64px;
+  border-top: 1px solid #e6eaee;
+  border-bottom: 1px solid #e6eaee;
 }
 
 /* Dashed connector at icon height; the white cards cover it, so it shows in the gaps. */
-
-.steps::before {
-  content: '';
-  position: absolute;
-  top: calc(var(--step-pad) + 28px);
-  left: calc(var(--step-pad) + 28px);
-  right: calc((100% - 2 * var(--step-gap)) / 3 - var(--step-pad) - 28px);
-  border-top: 2px dashed #e1c1c5;
-}
-
-.step {
-  position: relative;
-  padding: var(--step-pad);
-  border: 1px solid #e6ebef;
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    transform 0.2s;
-}
-
-.step:hover {
-  border-color: #e1c1c5;
-  box-shadow: 0 18px 40px rgba(140, 47, 52, 0.1);
-  transform: translateY(-3px);
-}
-
-.stepIcon {
-  display: grid;
-  place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #f6e9eb;
-  color: #8c2f34;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-
-.stepIcon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.step:hover .stepIcon {
-  background: #8c2f34;
-  color: #fff;
-}
-
-.step h3 {
-  margin: 24px 0 10px;
-  font-size: 21px;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-}
-
-.step p {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: #666;
-}
-
-.capabilities {
-  margin-top: 56px;
-}
 
 /* Centred label with a rule on each side. */
 
@@ -557,7 +482,7 @@ h1.heroTitles {
   display: flex;
   align-items: center;
   gap: 18px;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -573,71 +498,34 @@ h1.heroTitles {
   background: #dfe4e8;
 }
 
-@media (max-width: 990px) {
-  .steps {
-    --step-pad: 24px;
-    --step-gap: 16px;
-  }
-
-  .step h3 {
-    font-size: 18px;
-  }
-
-  .step p {
-    font-size: 13.5px;
-  }
-}
-
 @media (max-width: 760px) {
-  .steps {
-    grid-template-columns: 1fr;
-  }
-
-  /* Stacked cards: the connector runs down between the icons. */
-  .steps::before {
-    top: calc(var(--step-pad) + 28px);
-    bottom: calc(var(--step-pad) + 28px);
-    left: calc(var(--step-pad) + 27px);
-    right: auto;
-    border-top: 0;
-    border-left: 2px dashed #e1c1c5;
-  }
-
-  .capabilities {
-    margin-top: 40px;
-  }
-
   .capabilitiesLabel {
     gap: 12px;
     font-size: 11px;
     text-align: center;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .step,
-  .stepIcon {
-    transition: none;
+  .how {
+    margin-top: 28px;
+    padding-block: 40px 46px;
   }
-}
-
-/* Capabilities: five features in a light band; subgrid keeps titles and notes aligned. */
-.capabilityList {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-block: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid #e6ebef;
-  border-radius: 16px;
 }
 
 /* Each feature spans two rows of the list grid (title, note) through subgrid, so every
    title shares one row and every note starts on the same line. */
+
+/* Capabilities: five separate white boxes on the grey band; subgrid keeps every
+   title and note on the same lines across the boxes. */
+
+.capabilityList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .capability {
-  position: relative;
   display: grid;
   grid-row: span 2;
   grid-template-rows: subgrid;
@@ -646,21 +534,61 @@ h1.heroTitles {
   row-gap: 5px;
   align-items: start;
   padding: 22px 20px;
-  transition: background 0.2s;
-}
-
-.capability + .capability::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 22px;
-  bottom: 22px;
-  width: 1px;
-  background: #e3e9ee;
+  border: 1px solid #e6ebef;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
 .capability:hover {
-  background: #fbf6f7;
+  border-color: #e1c1c5;
+  box-shadow: 0 14px 30px rgba(140, 47, 52, 0.1);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1180px) {
+  .capabilityList {
+    gap: 12px;
+  }
+
+  .capability {
+    grid-template-columns: 36px 1fr;
+    column-gap: 10px;
+    padding: 18px 14px;
+  }
+}
+
+/* Two columns, with the fifth box across the full width. */
+
+@media (max-width: 990px) {
+  .capabilityList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .capability:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .capabilityList {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .capability {
+    padding: 15px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability {
+    transition: none;
+  }
 }
 
 .capabilityIcon {
@@ -706,12 +634,6 @@ h1.heroTitles {
 }
 
 @media (max-width: 1180px) {
-  .capability {
-    grid-template-columns: 36px 1fr;
-    column-gap: 10px;
-    padding: 18px 14px;
-  }
-
   .capabilityIcon {
     width: 36px;
     height: 36px;
@@ -724,46 +646,6 @@ h1.heroTitles {
 
   .capability small {
     font-size: 11px;
-  }
-}
-
-/* Two columns, with the fifth feature across the full width. */
-
-@media (max-width: 990px) {
-  .capabilityList {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .capability + .capability::before {
-    display: none;
-  }
-
-  .capability {
-    border-bottom: 1px solid #e3e9ee;
-  }
-
-  .capability:nth-child(odd):not(:last-child) {
-    border-right: 1px solid #e3e9ee;
-  }
-
-  .capability:last-child {
-    grid-column: 1 / -1;
-    border-bottom: 0;
-  }
-}
-
-@media (max-width: 520px) {
-  .capabilityList {
-    grid-template-columns: 1fr;
-    border-radius: 14px;
-  }
-
-  .capability:nth-child(odd):not(:last-child) {
-    border-right: 0;
-  }
-
-  .capability {
-    padding: 15px 16px;
   }
 }
 

@@ -28,19 +28,7 @@ export const translations = {
       'Use the smartphones you already have',
       'Complements your PMS, POS and ERP',
     ],
-    howBadge: 'How It Works',
-    howTitle: 'From shelf to record\nin three steps.',
-    howLead:
-      'One connected workflow that runs on the smartphones and systems your pharmacy already uses.',
     capabilitiesLabel: 'Built for the way pharmacies work',
-    pillars: [
-      [
-        'Capture every product',
-        'Scan the UPC or GS1 DataMatrix, or read the DIN, on any smartphone.',
-      ],
-      ['Verify every quantity', 'Count physical stock and compare it with the system record.'],
-      ['Track every expiry', 'See batches and expiry dates before stock turns into a write-off.'],
-    ],
     challenge: [
       'THE INVENTORY DISCONNECT',
       'Your system says “available”.\nYour shelf says otherwise.',
@@ -518,25 +506,7 @@ export const translations = {
       'Utilisez les téléphones que vous avez déjà',
       'Complète vos systèmes de pharmacie, PDV et ERP',
     ],
-    howBadge: 'Fonctionnement',
-    howTitle: 'Du rayon au dossier\nen trois étapes.',
-    howLead:
-      'Un flux de travail connecté, sur les téléphones et les systèmes que votre pharmacie utilise déjà.',
     capabilitiesLabel: 'Conçu pour le fonctionnement des pharmacies',
-    pillars: [
-      [
-        'Identifiez chaque produit',
-        'Lisez l’UPC, le GS1 DataMatrix ou le DIN avec n’importe quel téléphone intelligent.',
-      ],
-      [
-        'Vérifiez chaque quantité',
-        'Comptez le stock physique et comparez-le au dossier du système.',
-      ],
-      [
-        'Suivez chaque expiration',
-        'Repérez les lots et les dates d’expiration avant que le stock ne soit perdu.',
-      ],
-    ],
     challenge: [
       'LE DÉCALAGE DES STOCKS',
       'Le système dit « disponible ».\nLe rayon dit autre chose.',
