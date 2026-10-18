@@ -97,6 +97,8 @@ export function Lines({
     <Tag data-lines="" {...props}>
       {lines.map((line, i) => (
         <span className={styles.line} data-line="" key={i}>
+          {/* Keeps the lines apart in the accessible name; the spans are blocks. */}
+          {i > 0 && ' '}
           <span>{emphasise && i === lines.length - 1 ? <em>{line}</em> : line}</span>
         </span>
       ))}

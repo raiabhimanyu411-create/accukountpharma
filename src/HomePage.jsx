@@ -2,18 +2,17 @@ import { useRef } from 'react'
 import { usePageAnimations } from './lib/motion.js'
 import { Benefits } from './sections/Benefits.jsx'
 import { Canada } from './sections/Canada.jsx'
-import { Capabilities } from './sections/Capabilities.jsx'
 import { Challenge } from './sections/Challenge.jsx'
 import { Counting } from './sections/Counting.jsx'
 import { Dashboard } from './sections/Dashboard.jsx'
 import { Expiry } from './sections/Expiry.jsx'
 import { FinalCall } from './sections/FinalCall.jsx'
 import { Hero } from './sections/Hero.jsx'
+import { HowItWorks } from './sections/HowItWorks.jsx'
 import { Identification } from './sections/Identification.jsx'
 import { Integrations } from './sections/Integrations.jsx'
 import { InventoryDrift } from './sections/InventoryDrift.jsx'
 import { Pilot } from './sections/Pilot.jsx'
-import { Pillars } from './sections/Pillars.jsx'
 import { Platform } from './sections/Platform.jsx'
 import { SmartphoneWeb } from './sections/SmartphoneWeb.jsx'
 import { Workflows } from './sections/Workflows.jsx'
@@ -28,9 +27,8 @@ export function HomePage() {
       {/* 02: visual hero */}
       <Hero />
 
-      {/* Capture / verify / track flow and the capability strip, from the hero caption */}
-      <Pillars />
-      <Capabilities />
+      {/* How it works: capture / verify / track, and the capabilities behind them */}
+      <HowItWorks />
 
       {/* 03: visual challenge */}
       <Challenge />

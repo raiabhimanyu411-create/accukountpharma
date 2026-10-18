@@ -28,7 +28,11 @@ export const translations = {
       'Use the smartphones you already have',
       'Complements your PMS, POS and ERP',
     ],
-    pillarsTitle: 'How ACCUKOUNT Pharma works',
+    howBadge: 'How It Works',
+    howTitle: 'From shelf to record\nin three steps.',
+    howLead:
+      'One connected workflow that runs on the smartphones and systems your pharmacy already uses.',
+    capabilitiesLabel: 'Built for the way pharmacies work',
     pillars: [
       [
         'Capture every product',
@@ -514,7 +518,11 @@ export const translations = {
       'Utilisez les téléphones que vous avez déjà',
       'Complète vos systèmes de pharmacie, PDV et ERP',
     ],
-    pillarsTitle: 'Comment fonctionne ACCUKOUNT Pharma',
+    howBadge: 'Fonctionnement',
+    howTitle: 'Du rayon au dossier\nen trois étapes.',
+    howLead:
+      'Un flux de travail connecté, sur les téléphones et les systèmes que votre pharmacie utilise déjà.',
+    capabilitiesLabel: 'Conçu pour le fonctionnement des pharmacies',
     pillars: [
       [
         'Identifiez chaque produit',
