@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { StoreBadges } from '../components/StoreBadges.jsx'
-import { Badge, ContactPill, Icon, PillButton } from '../components/ui.jsx'
+import { Badge, ContactPill, PillButton } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import { cx } from '../lib/cx.js'
 import { prefersReducedMotion } from '../lib/motion.js'
 import styles from '../pages/Home.module.css'
 import site from '../styles/Site.module.css'
 
-const STRIP_ICONS = ['phone', 'language', 'scan', 'check', 'link']
 // How long each message stays up; the progress bar animation times the rotation.
 const HERO_INTERVAL = 6500
 
@@ -97,100 +96,78 @@ export function Hero() {
   }
 
   return (
-    <>
-      <section className={styles.hero} aria-labelledby="hero-title">
-        <img
-          className={styles.heroPhoto}
-          src="assets/pharmacy-hero.webp"
-          width="1686"
-          height="810"
-          fetchPriority="high"
-          alt={t.heroAlt}
-        />
-        <div className={styles.heroOverlay}></div>
-        <div
-          className={cx(site.wrap, styles.heroContent, paused && styles.heroPaused)}
-          style={{ '--hero-interval': `${HERO_INTERVAL}ms` }}
-          {...pause}
+    <section className={styles.hero} aria-labelledby="hero-title">
+      <img
+        className={styles.heroPhoto}
+        src="assets/pharmacy-hero.webp"
+        width="1686"
+        height="810"
+        fetchPriority="high"
+        alt={t.heroAlt}
+      />
+      <div className={styles.heroOverlay}></div>
+      <div
+        className={cx(site.wrap, styles.heroContent, paused && styles.heroPaused)}
+        style={{ '--hero-interval': `${HERO_INTERVAL}ms` }}
+        {...pause}
+      >
+        <Badge icon="leaf" className={styles.heroBadge} data-reveal={undefined} data-hero-item="">
+          {t.eyebrow}
+        </Badge>
+        {/* Inactive titles are hidden from assistive tech, so the heading reads as the current message. */}
+        <h1
+          ref={titles}
+          id="hero-title"
+          className={cx(styles.heroTitles, titleSize.animate && styles.heroResizing)}
+          style={{ height: titleSize.height }}
         >
-          <Badge icon="leaf" className={styles.heroBadge} data-reveal={undefined} data-hero-item="">
-            {t.eyebrow}
-          </Badge>
-          {/* Inactive titles are hidden from assistive tech, so the heading reads as the current message. */}
-          <h1
-            ref={titles}
-            id="hero-title"
-            className={cx(styles.heroTitles, titleSize.animate && styles.heroResizing)}
-            style={{ height: titleSize.height }}
-          >
-            {slides.map(([title], i) => (
-              <span key={i} className={slide(i)} aria-hidden={active !== i}>
-                <SlideLines text={title} />
-              </span>
-            ))}
-          </h1>
-          <div
-            ref={copies}
-            className={cx(styles.heroCopies, copySize.animate && styles.heroResizing)}
-            style={{ height: copySize.height }}
-          >
-            {slides.map(([, copy], i) => (
-              <p
-                key={i}
-                className={cx(styles.heroCopy, styles.heroFade, slide(i))}
-                aria-hidden={active !== i}
-              >
-                {copy}
-              </p>
-            ))}
-          </div>
-          <div className={styles.heroActions} data-hero-item="">
-            <ContactPill icon="rocket">{t.getStarted}</ContactPill>
-            <PillButton variant="outline" icon="play" href="#platform">
-              {t.learnMore}
-            </PillButton>
-          </div>
-          <StoreBadges data-hero-item="" />
-          <div
-            className={styles.heroDots}
-            role="group"
-            aria-label={t.heroSlideNav}
-            data-hero-item=""
-          >
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                className={cx(styles.heroDot, active === i && styles.heroDotActive)}
-                aria-label={`${t.heroSlideLabel} ${i + 1} / ${slides.length}`}
-                aria-current={active === i ? 'true' : undefined}
-                onClick={() => show(i)}
-              >
-                <span className={styles.heroDotTrack}>
-                  {active === i && !prefersReducedMotion() && (
-                    <span className={styles.heroProgress} key={active} onAnimationEnd={next} />
-                  )}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className={styles.heroCaption}>{t.final[0]}</div>
-      </section>
-      <div className={styles.capabilityStrip}>
-        <div
-          className={`${site.wrap} ${styles.capabilityStripWrap}`}
-          data-stagger=""
-          data-draw-icons=""
-        >
-          {t.strip.map((item, i) => (
-            <span key={i}>
-              <Icon name={STRIP_ICONS[i]} />
-              {item}
+          {slides.map(([title], i) => (
+            <span key={i} className={slide(i)} aria-hidden={active !== i}>
+              <SlideLines text={title} />
             </span>
+          ))}
+        </h1>
+        <div
+          ref={copies}
+          className={cx(styles.heroCopies, copySize.animate && styles.heroResizing)}
+          style={{ height: copySize.height }}
+        >
+          {slides.map(([, copy], i) => (
+            <p
+              key={i}
+              className={cx(styles.heroCopy, styles.heroFade, slide(i))}
+              aria-hidden={active !== i}
+            >
+              {copy}
+            </p>
+          ))}
+        </div>
+        <div className={styles.heroActions} data-hero-item="">
+          <ContactPill icon="rocket">{t.getStarted}</ContactPill>
+          <PillButton variant="outline" icon="play" href="#platform">
+            {t.learnMore}
+          </PillButton>
+        </div>
+        <StoreBadges data-hero-item="" />
+        <div className={styles.heroDots} role="group" aria-label={t.heroSlideNav} data-hero-item="">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              className={cx(styles.heroDot, active === i && styles.heroDotActive)}
+              aria-label={`${t.heroSlideLabel} ${i + 1} / ${slides.length}`}
+              aria-current={active === i ? 'true' : undefined}
+              onClick={() => show(i)}
+            >
+              <span className={styles.heroDotTrack}>
+                {active === i && !prefersReducedMotion() && (
+                  <span className={styles.heroProgress} key={active} onAnimationEnd={next} />
+                )}
+              </span>
+            </button>
           ))}
         </div>
       </div>
-    </>
+    </section>
   )
 }

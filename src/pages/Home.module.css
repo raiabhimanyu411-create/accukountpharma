@@ -225,7 +225,7 @@
 
 .heroContent {
   padding-top: 85px;
-  padding-bottom: 100px;
+  padding-bottom: 76px;
 }
 
 .hero h1 {
@@ -330,18 +330,18 @@ h1.heroTitles {
 .storeBadges {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .storeBadge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-width: 160px;
-  padding: 8px 18px 8px 14px;
+  gap: 8px;
+  min-width: 132px;
+  padding: 6px 14px 6px 11px;
   border: 1px solid #c9d0d6;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #fff;
   color: #000;
   line-height: 1.15;
@@ -358,8 +358,8 @@ h1.heroTitles {
 }
 
 .storeBadge svg {
-  width: 24px;
-  height: 24px;
+  width: 19px;
+  height: 19px;
   flex-shrink: 0;
 }
 
@@ -369,12 +369,12 @@ h1.heroTitles {
 }
 
 .storeBadge small {
-  font-size: 11px;
+  font-size: 9.5px;
   color: #666;
 }
 
 .storeBadge b {
-  font-size: 16px;
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -462,51 +462,324 @@ h1.heroTitles {
   margin-top: 32px;
 }
 
-.heroCaption {
-  background: #163e64;
+/* Capability strip: a raised panel of five features under the hero. */
+
+/* Capture / verify / track: a highlighted flow between the hero and the capability strip. */
+
+.pillars {
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0 64px;
   color: #fff;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  font-weight: 650;
-  padding: 17px 48px;
+  background:
+    radial-gradient(circle at 12% -20%, rgba(255, 255, 255, 0.12), transparent 45%),
+    radial-gradient(circle at 95% 120%, rgba(140, 47, 52, 0.45), transparent 40%),
+    linear-gradient(135deg, #163e64 0%, #0f2d4a 100%);
+}
+
+.pillarList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-right: 48px;
+}
+
+/* Dashed connector from each step's icon towards the next step. */
+
+.pillar:not(:last-child)::after {
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
+  top: 28px;
+  left: 76px;
+  right: 20px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.32);
+}
+
+.pillar:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  transform: rotate(45deg);
+}
+
+.pillarIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.pillarIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pillar:hover .pillarIcon {
+  background: #8c2f34;
+  border-color: #8c2f34;
+  transform: translateY(-2px);
+}
+
+.pillarStep {
+  margin-top: 22px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #f0cfd3;
+}
+
+.pillar h3 {
+  margin: 8px 0 10px;
+  font-size: 23px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.pillar p {
+  max-width: 320px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+@media (max-width: 990px) {
+  .pillar {
+    padding-right: 28px;
+  }
+
+  .pillar h3 {
+    font-size: 19px;
+  }
+
+  .pillar p {
+    font-size: 13px;
+  }
+}
+
+/* Stacked on phones, with the connector running down beside the icons. */
+
+@media (max-width: 760px) {
+  .pillars {
+    padding: 44px 0 46px;
+  }
+
+  .pillarList {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .pillar {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    column-gap: 18px;
+    padding-right: 0;
+  }
+
+  .pillarIcon {
+    grid-row: 1 / span 3;
+    width: 52px;
+    height: 52px;
+  }
+
+  .pillarStep {
+    margin-top: 2px;
+  }
+
+  .pillar h3 {
+    margin: 4px 0 6px;
+    font-size: 19px;
+  }
+
+  .pillar:not(:last-child)::after {
+    top: 62px;
+    bottom: -24px;
+    left: 26px;
+    right: auto;
+    border-top: 0;
+    border-left: 1px dashed rgba(255, 255, 255, 0.32);
+  }
+
+  .pillar:not(:last-child)::before {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillarIcon {
+    transition: none;
+  }
 }
 
 .capabilityStrip {
-  border-bottom: 1px solid #dce6ed;
+  padding: 30px 0;
+  background: linear-gradient(#fff, #f6f8fa);
+  border-bottom: 1px solid #e3e9ee;
 }
 
-.capabilityStrip > .capabilityStripWrap {
+.capabilityList {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e3e9ee;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
 }
 
-.capabilityStrip span {
+.capability {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 13px;
-  min-height: 88px;
-  padding: 20px 16px;
-  font-size: 10px;
-  font-weight: 650;
-  line-height: 1.5;
-  border-right: 1px solid #dce6ed;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 22px 20px;
+  transition: background 0.2s;
+}
+
+.capability + .capability::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background: #e3e9ee;
+}
+
+.capability:hover {
+  background: #fbf6f7;
+}
+
+.capabilityIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #f6e9eb;
+  color: #8c2f34;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.capabilityIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.capability:hover .capabilityIcon {
+  background: #8c2f34;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.capability strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
   color: #000;
 }
 
-.capabilityStrip span:first-child {
-  border-left: 1px solid #dce6ed;
+.capability small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #6f6f6f;
 }
 
-.capabilityStrip svg {
-  color: #8c2f34;
-  width: 22px;
-  height: 22px;
+@media (max-width: 1180px) {
+  .capability {
+    gap: 10px;
+    padding: 18px 14px;
+  }
+
+  .capabilityIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .capability strong {
+    font-size: 12px;
+  }
+
+  .capability small {
+    font-size: 11px;
+  }
+}
+
+/* Two columns, with the fifth feature across the full width. */
+
+@media (max-width: 990px) {
+  .capabilityList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .capability + .capability::before {
+    display: none;
+  }
+
+  .capability {
+    border-bottom: 1px solid #e3e9ee;
+  }
+
+  .capability:nth-child(odd):not(:last-child) {
+    border-right: 1px solid #e3e9ee;
+  }
+
+  .capability:last-child {
+    grid-column: 1 / -1;
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .capabilityStrip {
+    padding: 22px 0;
+  }
+
+  .capabilityList {
+    grid-template-columns: 1fr;
+    border-radius: 14px;
+  }
+
+  .capability:nth-child(odd):not(:last-child) {
+    border-right: 0;
+  }
+
+  .capability {
+    padding: 15px 16px;
+  }
 }
 
 .sectionHead {
@@ -2499,7 +2772,7 @@ h1.heroTitles {
 @media (min-width: 1500px) {
   .heroContent {
     padding-top: 100px;
-    padding-bottom: 115px;
+    padding-bottom: 90px;
   }
 
   .hero {
@@ -2598,17 +2871,6 @@ h1.heroTitles {
 
   .challengeLayout {
     gap: 40px;
-  }
-
-  .capabilityStrip span {
-    padding: 17px 9px;
-    font-size: 9px;
-    gap: 8px;
-  }
-
-  .capabilityStrip svg {
-    width: 20px;
-    height: 20px;
   }
 
   .movementTabs button {
@@ -2775,46 +3037,6 @@ h1.heroTitles {
     gap: 20px;
     margin-top: 22px;
     flex-wrap: wrap;
-  }
-
-  .heroCaption {
-    padding: 14px 20px;
-    font-size: 8px;
-    line-height: 1.65;
-    z-index: 3;
-    letter-spacing: 0.06em;
-  }
-
-  .capabilityStrip > .capabilityStripWrap {
-    width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .capabilityStrip span {
-    min-height: 75px;
-    font-size: 9px;
-    line-height: 1.6;
-    gap: 8px;
-    padding: 13px 12px;
-    justify-content: center;
-    border-bottom: 1px solid #dce6ed;
-  }
-
-  .capabilityStrip span:nth-child(n + 4) {
-    grid-column: span 1;
-  }
-
-  .capabilityStrip span:nth-child(4) {
-    grid-column: span 2;
-    border-left: 1px solid #dce6ed;
-  }
-
-  .capabilityStrip span:last-child {
-    border-right: 0;
-  }
-
-  .capabilityStrip span:first-child {
-    border-left: 0;
   }
 
   .section {
@@ -3597,17 +3819,6 @@ h1.heroTitles {
 
   .heroPhoto {
     height: 360px;
-  }
-
-  .capabilityStrip span {
-    font-size: 8px;
-    gap: 7px;
-    padding: 13px 8px;
-  }
-
-  .capabilityStrip svg {
-    width: 17px;
-    height: 17px;
   }
 
   .devicesStage {
