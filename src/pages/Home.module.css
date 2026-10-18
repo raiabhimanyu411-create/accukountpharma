@@ -464,6 +464,256 @@ h1.heroTitles {
 
 /* Capabilities band: a white panel of five features on light grey. */
 
+/* Challenge: the pharmacy photo fills the right side and fades into white behind the copy. */
+
+.challenge {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: 76px 84px;
+  background: #fff;
+}
+
+.challengeBg {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+}
+
+.challenge::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 40%,
+    rgba(255, 255, 255, 0.78) 48%,
+    rgba(255, 255, 255, 0) 60%
+  );
+}
+
+.challengeCopy {
+  max-width: 600px;
+}
+
+.challengeCopy h2 {
+  margin-bottom: 18px;
+  font-size: clamp(30px, 2.9vw, 44px);
+}
+
+.challengeCopy .lead {
+  max-width: 540px;
+  margin-bottom: 30px;
+  font-size: 15.5px;
+}
+
+/* The first three issues as numbered steps joined by a dashed line. */
+
+.issueSteps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 0 0 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.issueSteps li {
+  position: relative;
+}
+
+.issueSteps li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 52px;
+  right: -12px;
+  border-top: 1.5px dashed #d9aab0;
+}
+
+.issueStepIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #8c2f34;
+  color: #fff;
+}
+
+.issueStepIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.issueStepNumber {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #8c2f34;
+}
+
+.issueSteps h3 {
+  margin: 6px 0;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.issueSteps p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666;
+}
+
+/* The last two issues as cards. */
+
+.issueCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.issueCards li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #e6ebef;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.issueCardIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid #e1c1c5;
+  border-radius: 50%;
+  color: #8c2f34;
+}
+
+.issueCardIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.issueCards strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.issueCards small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #666;
+}
+
+@media (max-width: 1180px) {
+  .challengeBg {
+    width: 52%;
+  }
+
+  .challenge::before {
+    background: linear-gradient(
+      90deg,
+      #fff 0%,
+      #fff 48%,
+      rgba(255, 255, 255, 0.8) 55%,
+      rgba(255, 255, 255, 0) 66%
+    );
+  }
+
+  .challengeCopy {
+    max-width: 540px;
+  }
+}
+
+/* Narrow screens: copy first, then the photo across the full width. */
+
+@media (max-width: 990px) {
+  .challenge {
+    display: flex;
+    flex-direction: column;
+    padding-block: 60px 0;
+  }
+
+  .challenge::before {
+    display: none;
+  }
+
+  .challengeBg {
+    position: static;
+    order: 2;
+    width: 100%;
+    height: 340px;
+    margin-top: 44px;
+    object-position: center 35%;
+  }
+
+  .challengeCopy {
+    max-width: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .issueSteps {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .issueSteps li {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 14px;
+  }
+
+  .issueStepIcon {
+    grid-row: 1 / span 3;
+  }
+
+  .issueStepNumber {
+    margin-top: 0;
+  }
+
+  .issueSteps li:not(:last-child)::after {
+    top: 48px;
+    bottom: -14px;
+    left: 19px;
+    right: auto;
+    border-top: 0;
+    border-left: 1.5px dashed #d9aab0;
+  }
+
+  .issueCards {
+    grid-template-columns: 1fr;
+  }
+
+  .challengeBg {
+    height: 260px;
+  }
+}
+
 .how {
   /* A white gap keeps the band apart from the hero photo, whose light lower half
      otherwise runs straight into the grey. */
@@ -686,81 +936,7 @@ h1.heroTitles {
   max-width: 700px;
 }
 
-.challengeLayout {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 70px;
-  align-items: center;
-}
-
-/* The inventory-disconnect illustration in place of the old 24 / 0 comparison box. */
-
-.challengePhoto {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid #e6ebef;
-  border-radius: 16px;
-  background: #f5f6f7;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-}
-
-.challengePhoto img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.issueList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.issueList li {
-  position: relative;
-  padding: 12px 0;
-  border-bottom: 1px solid #e4ebf0;
-  font-size: 14px;
-  line-height: 1.6;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.issueIcon {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #8c2f34;
-  color: #fff;
-}
-
-.issueIcon svg {
-  width: 17px;
-  height: 17px;
-}
-
-.issueList li:first-child {
-  padding-top: 0;
-}
-
-.impactBand {
-  margin-top: 38px;
-  padding: 20px 25px;
-  border-left: 3px solid #8c2f34;
-  background: #f2f6f9;
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  color: #000;
-  font-size: 14px;
-}
-
-.impactBand svg {
-  color: #8c2f34;
+@media (max-width: 990px) {
 }
 
 .movementTabs {
@@ -2669,10 +2845,6 @@ h1.heroTitles {
     max-width: 700px;
   }
 
-  .challengeLayout {
-    gap: 40px;
-  }
-
   .movementTabs button {
     flex-direction: column;
     font-size: 10px;
@@ -2866,27 +3038,6 @@ h1.heroTitles {
 
   .sectionHead.center .lead {
     margin-top: 20px;
-  }
-
-  .challengeLayout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .issueList li {
-    font-size: 13px;
-  }
-
-  .impactBand {
-    margin-top: 28px;
-    padding: 18px;
-    font-size: 12px;
-    align-items: flex-start;
-    line-height: 1.7;
-  }
-
-  .impactBand svg {
-    margin-top: 3px;
   }
 
   .movementTabs {
