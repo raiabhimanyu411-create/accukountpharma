@@ -464,7 +464,7 @@ h1.heroTitles {
 
 /* Capabilities band: a white panel of five features on light grey. */
 
-/* Photo sections (Challenge, Inventory drift): a pharmacy photo fills the right side and fades into white behind the copy. */
+/* Photo sections (Challenge, Platform): a pharmacy photo fills the right side and fades into white behind the copy. */
 
 .photoSection {
   position: relative;
@@ -719,40 +719,37 @@ h1.heroTitles {
 
 /* Inventory drift: the shared photo layout with a wider copy column for the chart. */
 
-/* Light grey, like the capabilities band; the photo fades into the same grey. */
-.drift.photoSection {
+.drift {
   border-top: 1px solid #e6eaee;
   background: #f5f6f7;
 }
 
-.drift::before {
-  background: linear-gradient(
-    90deg,
-    #f5f6f7 0%,
-    #f5f6f7 61%,
-    rgba(245, 246, 247, 0.8) 66%,
-    rgba(245, 246, 247, 0) 73%
-  );
+/* Heading on the left, lead on the right, both resting on the same baseline. */
+.driftHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 24px 64px;
+  align-items: end;
+  margin-bottom: 40px;
 }
 
-.drift .photoBg {
-  width: 38%;
-  object-position: left center;
-}
-
-.driftCopy {
-  max-width: 840px;
-}
-
-.driftCopy h2 {
-  margin-bottom: 18px;
+.driftHead h2 {
+  margin-bottom: 0;
   font-size: clamp(32px, 3.3vw, 50px);
 }
 
-.driftCopy .lead {
-  max-width: 640px;
-  margin-bottom: 36px;
-  font-size: 15.5px;
+.driftHead .lead {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* The movements and the chart sit on a white panel. */
+.driftPanel {
+  padding: 40px 48px 28px;
+  border: 1px solid #e6eaee;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.05);
 }
 
 /* The movement icons and the chart share the same seven columns, so each icon sits above
@@ -918,20 +915,16 @@ h1.heroTitles {
 }
 
 .driftNote {
-  margin: 16px 0 28px;
+  margin: 20px 0 0;
   font-size: 11.5px;
   color: #8a8a8a;
 }
 
+.driftCta {
+  margin-top: 32px;
+}
+
 @media (max-width: 1280px) {
-  .driftCopy {
-    max-width: 760px;
-  }
-
-  .drift .photoBg {
-    width: 36%;
-  }
-
   .driftFlow {
     margin-left: calc((23px * 14 - 100% + 124px) / 13);
     padding-right: 124px;
@@ -956,30 +949,10 @@ h1.heroTitles {
   }
 }
 
-/* Narrower screens: copy first, then the photo across the full width. */
-
-@media (max-width: 1080px) {
-  .drift.photoSection {
-    display: flex;
-    flex-direction: column;
-    padding-block: 60px 0;
-  }
-
-  .drift::before {
-    display: none;
-  }
-
-  .drift .photoBg {
-    position: static;
-    order: 2;
-    width: 100%;
-    height: 360px;
-    margin-top: 44px;
-    object-position: center 30%;
-  }
-
-  .driftCopy {
-    max-width: none;
+@media (max-width: 990px) {
+  .driftHead {
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 }
 
@@ -1032,7 +1005,296 @@ h1.heroTitles {
     border-radius: 0;
   }
 
-  .drift .photoBg {
+  .driftPanel {
+    padding: 28px 18px 20px;
+  }
+}
+
+/* Verification layer: the photo layout with the systems feeding the ACCUKOUNT core. */
+
+.platform::before {
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    #fff 56%,
+    rgba(255, 255, 255, 0.8) 61%,
+    rgba(255, 255, 255, 0) 68%
+  );
+}
+
+.platform .photoBg {
+  width: 46%;
+  object-position: left center;
+}
+
+.platformCopy {
+  max-width: 720px;
+}
+
+.platformCopy h2 {
+  margin-bottom: 16px;
+  font-size: clamp(30px, 3vw, 46px);
+}
+
+.platformCopy .lead {
+  max-width: 660px;
+  margin-bottom: 30px;
+  font-size: 15.5px;
+}
+
+.platformSystems {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.platformSystems li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.platformIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #8c2f34;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(140, 47, 52, 0.22);
+}
+
+.platformIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* The bracket spans the first to the last column centre; the two inner ticks drop from
+   the middle columns, at a third and two thirds of its width. */
+
+.platformFeed {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.platformBracket {
+  position: relative;
+  display: block;
+  height: 18px;
+  margin-inline: 12.5%;
+  border: 1.5px solid #b9cde0;
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+.platformBracket::before,
+.platformBracket::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 33.33%;
+  border-left: 1.5px solid #b9cde0;
+}
+
+.platformBracket::after {
+  left: 66.67%;
+}
+
+.platformFeed p {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+.platformArrow {
+  position: relative;
+  display: block;
+  width: 2px;
+  height: 16px;
+  margin: 0 auto 8px;
+  background: #8c2f34;
+}
+
+.platformArrow::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-inline: 5px solid transparent;
+  border-top: 7px solid #8c2f34;
+}
+
+.platformCore {
+  overflow: hidden;
+  border: 1px solid #cfdbe6;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(16, 24, 40, 0.06);
+}
+
+.platformCoreLabel {
+  margin: 0;
+  padding: 12px;
+  background: #1d3d63;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.platformCoreLabel span {
+  margin-left: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f0b6bb;
+}
+
+.platformHalves {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.platformHalves > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 22px;
+}
+
+.platformHalves > div + div {
+  border-left: 1px solid #dfe7ee;
+}
+
+.platformHalfIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f7e6e8;
+  color: #8c2f34;
+}
+
+.platformHalfIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.platformHalves strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.platformHalves small {
+  display: block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #777;
+}
+
+.platformFoot {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.platformFoot p {
+  margin: 0;
+  max-width: 400px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #888;
+}
+
+@media (max-width: 1280px) {
+  .platformCopy {
+    max-width: 660px;
+  }
+
+  .platformSystems li {
+    font-size: 13px;
+  }
+
+  .platformIcon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Narrower screens: copy first, then the photo across the full width. */
+
+@media (max-width: 1180px) {
+  .platform.photoSection {
+    display: flex;
+    flex-direction: column;
+    padding-block: 60px 0;
+  }
+
+  .platform::before {
+    display: none;
+  }
+
+  .platform .photoBg {
+    position: static;
+    order: 2;
+    width: 100%;
+    height: 400px;
+    margin-top: 48px;
+    object-position: center 30%;
+  }
+
+  .platformCopy {
+    max-width: 760px;
+  }
+}
+
+@media (max-width: 760px) {
+  .platformSystems {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 12px;
+  }
+
+  .platformBracket {
+    display: none;
+  }
+
+  .platformFeed {
+    margin-top: 22px;
+  }
+
+  .platformHalves {
+    grid-template-columns: 1fr;
+  }
+
+  .platformHalves > div + div {
+    border-top: 1px solid #dfe7ee;
+    border-left: 0;
+  }
+
+  .platformFoot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .platform .photoBg {
     height: 280px;
   }
 }
@@ -1257,120 +1519,6 @@ h1.heroTitles {
 .sectionHead.center .lead {
   margin: 22px auto 0;
   max-width: 700px;
-}
-
-.layerMap {
-  max-width: 970px;
-  margin-inline: auto;
-}
-
-.sourceSystems {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.sourceSystems > span {
-  padding: 23px 12px;
-  border-bottom: 2px solid #bfd1de;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 12px;
-  color: #000;
-  font-size: 12px;
-  text-align: center;
-}
-
-.sourceSystems svg {
-  width: 32px;
-  height: 32px;
-}
-
-.mapFlow {
-  text-align: center;
-  font-size: 12px;
-  color: #6d6d6d;
-  margin: 22px 0 16px;
-}
-
-.mapFlow span {
-  display: block;
-  font-size: 28px;
-  line-height: 1.5;
-  color: #8c2f34;
-}
-
-.layerCore {
-  border: 1px solid #c4d6e3;
-  box-shadow: 0 12px 38px #163e640a;
-}
-
-.coreLabel {
-  background: #163e64;
-  padding: 16px;
-  text-align: center;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 750;
-  letter-spacing: -0.02em;
-}
-
-.coreLabel > span {
-  color: #e1c1c5;
-  letter-spacing: 0.15em;
-  font-size: 10px;
-  margin-left: 12px;
-}
-
-.layerHalves {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: #f8fbfd;
-}
-
-.layerHalves > div {
-  padding: 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  text-align: center;
-}
-
-.layerHalves > div + div {
-  border-left: 1px solid #c4d6e3;
-}
-
-.layerHalves svg {
-  color: #8c2f34;
-  width: 34px;
-  height: 34px;
-}
-
-.layerHalves strong {
-  font-size: 16px;
-  color: #000;
-}
-
-.layerHalves small {
-  font-size: 11px;
-  color: #636363;
-  max-width: 290px;
-}
-
-.mapApproval {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  margin: 25px 0;
-  font-size: 12px;
-  color: #000;
-}
-
-.mapApproval svg {
-  color: #8c2f34;
 }
 
 .dualLayout {
@@ -3279,63 +3427,6 @@ h1.heroTitles {
 
   .sectionHead.center .lead {
     margin-top: 20px;
-  }
-
-  .sourceSystems {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px 20px;
-  }
-
-  .sourceSystems > span {
-    font-size: 11px;
-    padding: 20px 9px;
-    gap: 10px;
-  }
-
-  .sourceSystems svg {
-    height: 27px;
-    width: 27px;
-  }
-
-  .mapFlow {
-    font-size: 10px;
-    margin-top: 20px;
-  }
-
-  .coreLabel {
-    font-size: 16px;
-    padding: 14px;
-  }
-
-  .coreLabel > span {
-    font-size: 9px;
-    margin-left: 8px;
-  }
-
-  .layerHalves > div {
-    padding: 24px 15px;
-    gap: 12px;
-  }
-
-  .layerHalves strong {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  .layerHalves small {
-    font-size: 9px;
-    line-height: 1.7;
-  }
-
-  .mapApproval {
-    font-size: 10px;
-    align-items: flex-start;
-    margin: 22px 5px;
-  }
-
-  .mapApproval svg {
-    height: 18px;
-    width: 18px;
   }
 
   .dualLayout {

@@ -61,18 +61,21 @@ export const translations = {
       'Illustrative chart: the system record stays level while the physical shelf falls further behind with each unchecked movement.',
     driftCta: 'Explore Physical Verification',
     layer: [
-      'THE ACCUKOUNT VERIFICATION LAYER',
-      'Connected to your systems.\nIndependently verified on the shelf.',
+      'The ACCUKOUNT Verification Layer',
+      'Connected to Your Systems.\nIndependently Verified on the Shelf.',
       'ACCUKOUNT adds an independent physical-verification layer alongside your established systems of record. Capture evidence on the smartphone; reconcile and control it on the web.',
     ],
-    systems: ['Dispensing / PMS', 'POS', 'Wholesaler ordering', 'Inventory / ERP'],
+    systems: ['Dispensing / PMS', 'POS', 'Wholesaler Ordering', 'Inventory / ERP'],
     dataIn: 'Product, order, receipt and inventory data',
-    verify: 'Smartphone physical verification',
+    verify: 'Smartphone Physical Verification',
     evidence: 'Identity · quantity · batch · expiry · location',
-    control: 'Web control & reconciliation',
+    control: 'Web Control & Reconciliation',
     resultsOut: 'Reviewed exceptions · approved results · audit history',
     integrationSmall:
       'Data exchange and synchronization depend on available APIs or approved structured interfaces.',
+    layerAlt:
+      'A pharmacist scans a medicine box with a smartphone beside a laptop showing the ACCUKOUNT dashboard.',
+    layerCta: 'Explore the Platform',
     dual: [
       'SMARTPHONE EXECUTION. WEB CONTROL.',
       'The shelf in your hand.\nThe operation in your view.',
@@ -533,7 +536,7 @@ export const translations = {
       'Graphique illustratif : les données système restent stables tandis que le stock en rayon s’en éloigne à chaque mouvement non vérifié.',
     driftCta: 'Explorer la vérification physique',
     layer: [
-      'LA COUCHE DE VÉRIFICATION ACCUKOUNT',
+      'La couche de vérification ACCUKOUNT',
       'Connecté à vos systèmes.\nVérifié physiquement en rayon.',
       'ACCUKOUNT ajoute une couche indépendante de vérification physique à vos systèmes de référence. Recueillez les preuves sur le téléphone; rapprochez et contrôlez-les sur le Web.',
     ],
@@ -545,6 +548,9 @@ export const translations = {
     resultsOut: 'Exceptions examinées · résultats approuvés · historique',
     integrationSmall:
       'Les échanges et la synchronisation dépendent des API disponibles ou d’interfaces structurées approuvées.',
+    layerAlt:
+      'Une pharmacienne scanne une boîte de médicament avec son téléphone, à côté d’un portable affichant le tableau de bord ACCUKOUNT.',
+    layerCta: 'Découvrir la plateforme',
     dual: [
       'EXÉCUTION MOBILE. CONTRÔLE WEB.',
       'Le rayon dans votre main.\nLes opérations sous vos yeux.',

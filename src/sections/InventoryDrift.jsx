@@ -64,32 +64,28 @@ function DriftChart({ t }) {
 }
 
 // Where drift begins: the six stock movements over a chart of the shelf falling away from
-// the record, with the pharmacy photo filling the right side.
+// the record.
 export function InventoryDrift() {
   const { t } = useLanguage()
   const [badge, title, lead] = t.drift
 
   return (
     <section
-      className={`${styles.section} ${styles.photoSection} ${styles.drift}`}
+      className={`${styles.section} ${styles.drift}`}
       id="inventory-drift"
       aria-labelledby="inventory-drift-title"
     >
-      <img
-        className={styles.photoBg}
-        src="assets/inventory-drift.jpg"
-        width="511"
-        height="809"
-        loading="lazy"
-        alt=""
-      />
       <div className={site.wrap}>
-        <div className={styles.driftCopy}>
-          <Badge>{badge}</Badge>
-          <Lines id="inventory-drift-title" text={title} />
+        <div className={styles.driftHead}>
+          <div>
+            <Badge>{badge}</Badge>
+            <Lines id="inventory-drift-title" text={title} />
+          </div>
           <p className={styles.lead} data-reveal="">
             {lead}
           </p>
+        </div>
+        <div className={styles.driftPanel} data-reveal="">
           <div className={styles.driftFlow}>
             <ol className={styles.driftMoves} data-stagger="" data-draw-icons="">
               {t.movements.map((label, i) => (
@@ -101,18 +97,14 @@ export function InventoryDrift() {
                 </li>
               ))}
             </ol>
-            <div data-reveal="">
-              <DriftChart t={t} />
-            </div>
+            <DriftChart t={t} />
           </div>
-          <p className={styles.driftNote} data-reveal="">
-            {t.driftNote}
-          </p>
-          <div data-reveal="">
-            <PillButton variant="outline" href="#smartphone-web">
-              {t.driftCta}
-            </PillButton>
-          </div>
+          <p className={styles.driftNote}>{t.driftNote}</p>
+        </div>
+        <div className={styles.driftCta} data-reveal="">
+          <PillButton variant="outline" href="#smartphone-web">
+            {t.driftCta}
+          </PillButton>
         </div>
       </div>
     </section>

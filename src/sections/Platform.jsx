@@ -1,56 +1,86 @@
-import { Icon, SectionHead } from '../components/ui.jsx'
+import { Badge, Icon, Lines, PillButton } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import styles from '../pages/Home.module.css'
 import site from '../styles/Site.module.css'
 
 const SYSTEM_ICONS = ['document', 'web', 'box', 'chart']
 
+// The verification layer: the pharmacy's systems feed ACCUKOUNT, which verifies on the
+// smartphone and reconciles on the web. The pharmacist photo fills the right side.
 export function Platform() {
   const { t } = useLanguage()
+  const [badge, title, lead] = t.layer
 
   return (
     <section
-      className={`${styles.section} ${site.wrap}`}
+      className={`${styles.section} ${styles.photoSection} ${styles.platform}`}
       id="platform"
       aria-labelledby="platform-title"
     >
-      <SectionHead content={t.layer} id="platform" center />
-      <div className={styles.layerMap}>
-        <div className={styles.sourceSystems} data-stagger="" data-draw-icons="">
-          {t.systems.map((system, i) => (
-            <span key={i}>
-              <Icon name={SYSTEM_ICONS[i]} />
-              {system}
-            </span>
-          ))}
-        </div>
-        <p className={styles.mapFlow}>
-          {t.dataIn}
-          <span>↓</span>
-        </p>
-        <div className={styles.layerCore} data-reveal="" data-draw-icons="">
-          <div className={styles.coreLabel}>
-            ACCUKOUNT <span>PHARMA</span>
+      <img
+        className={styles.photoBg}
+        src="assets/verification-layer.jpg"
+        width="724"
+        height="811"
+        loading="lazy"
+        alt={t.layerAlt}
+      />
+      <div className={site.wrap}>
+        <div className={styles.platformCopy}>
+          <Badge>{badge}</Badge>
+          <Lines id="platform-title" text={title} />
+          <p className={styles.lead} data-reveal="">
+            {lead}
+          </p>
+          <ul className={styles.platformSystems} data-stagger="" data-draw-icons="">
+            {t.systems.map((system, i) => (
+              <li key={i}>
+                <span className={styles.platformIcon}>
+                  <Icon name={SYSTEM_ICONS[i]} />
+                </span>
+                {system}
+              </li>
+            ))}
+          </ul>
+          {/* A bracket gathers the four systems into one feed down to ACCUKOUNT. */}
+          <div className={styles.platformFeed} data-reveal="">
+            <span className={styles.platformBracket} aria-hidden="true" />
+            <p>{t.dataIn}</p>
+            <span className={styles.platformArrow} aria-hidden="true" />
           </div>
-          <div className={styles.layerHalves}>
-            <div>
-              <Icon name="phone" />
-              <strong>{t.verify}</strong>
-              <small>{t.evidence}</small>
-            </div>
-            <div>
-              <Icon name="web" />
-              <strong>{t.control}</strong>
-              <small>{t.resultsOut}</small>
+          <div className={styles.platformCore} data-reveal="" data-draw-icons="">
+            <p className={styles.platformCoreLabel}>
+              ACCUKOUNT <span>PHARMA</span>
+            </p>
+            <div className={styles.platformHalves}>
+              <div>
+                <span className={styles.platformHalfIcon}>
+                  <Icon name="phone" />
+                </span>
+                <span>
+                  <strong>{t.verify}</strong>
+                  <small>{t.evidence}</small>
+                </span>
+              </div>
+              <div>
+                <span className={styles.platformHalfIcon}>
+                  <Icon name="web" />
+                </span>
+                <span>
+                  <strong>{t.control}</strong>
+                  <small>{t.resultsOut}</small>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={styles.mapApproval} data-reveal="">
-          <Icon name="shield" />
-          <span>{t.resultsOut}</span>
+          <div className={styles.platformFoot} data-reveal="">
+            <PillButton variant="outline" href="#workflows">
+              {t.layerCta}
+            </PillButton>
+            <p>{t.integrationSmall}</p>
+          </div>
         </div>
       </div>
-      <p className={`${site.small} ${site.muted} ${styles.center}`}>{t.integrationSmall}</p>
     </section>
   )
 }
