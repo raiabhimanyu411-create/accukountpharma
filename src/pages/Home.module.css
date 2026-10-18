@@ -693,103 +693,21 @@ h1.heroTitles {
   align-items: center;
 }
 
-.realityVisual {
-  display: grid;
-  grid-template-columns: 1fr 44px 1fr;
-  gap: 10px;
-  position: relative;
-  background: #f4f7fa;
-  border: 1px solid #dce6ed;
-  padding: 30px 24px 40px;
-  color: #000;
-}
+/* The inventory-disconnect illustration in place of the old 24 / 0 comparison box. */
 
-.realitySystem,
-.realityShelf {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.realityVisual svg {
-  height: 38px;
-  width: 38px;
-  margin-bottom: 5px;
-}
-
-.realityVisual small {
-  font-size: 10px;
-}
-
-.realitySystem > strong {
-  font-size: 80px;
-  line-height: 1.15;
-  letter-spacing: -0.06em;
-}
-
-.realitySystem > span {
-  font-size: 9px;
-  font-weight: 700;
-  color: #216c50;
-  background: #e1f0e7;
-  padding: 4px 13px;
-}
-
-.systemLines {
-  display: flex;
-  gap: 5px;
-  margin-top: 15px;
-}
-
-.systemLines i {
-  width: 21px;
-  height: 5px;
-  background: #c2d2de;
-}
-
-.realityGap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  color: #8c2f34;
-}
-
-.realityShelf {
-  color: #8c2f34;
-}
-
-.shelfSpace {
-  height: 94px;
-  width: 100%;
-  border-bottom: 8px solid #9daebb;
-  border-top: 5px solid #cdd9e2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  background: linear-gradient(90deg, #dbe5ec, transparent 10%, transparent 90%, #dbe5ec);
-}
-
-.shelfSpace span {
-  font-size: 62px;
-  font-weight: 650;
-  line-height: 1;
-}
-
-.emptyLabel {
-  font-size: 8px;
-  font-weight: 700;
-}
-
-.realityVisual > .sampleNote {
-  position: absolute;
-  left: 24px;
-  bottom: 6px;
+.challengePhoto {
   margin: 0;
-  font-size: 8px;
+  overflow: hidden;
+  border: 1px solid #e6ebef;
+  border-radius: 16px;
+  background: #f5f6f7;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.challengePhoto img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .issueList {
@@ -800,28 +718,33 @@ h1.heroTitles {
 
 .issueList li {
   position: relative;
-  padding: 15px 0 15px 28px;
+  padding: 12px 0;
   border-bottom: 1px solid #e4ebf0;
   font-size: 14px;
   line-height: 1.6;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.issueList li:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 24px;
-  width: 6px;
-  height: 6px;
+.issueIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   background: #8c2f34;
+  color: #fff;
+}
+
+.issueIcon svg {
+  width: 17px;
+  height: 17px;
 }
 
 .issueList li:first-child {
   padding-top: 0;
-}
-
-.issueList li:first-child:before {
-  top: 9px;
 }
 
 .impactBand {
@@ -2948,23 +2871,6 @@ h1.heroTitles {
   .challengeLayout {
     grid-template-columns: 1fr;
     gap: 30px;
-  }
-
-  .realityVisual {
-    padding: 26px 20px 38px;
-  }
-
-  .realitySystem > strong {
-    font-size: 72px;
-  }
-
-  .realitySystem > span,
-  .emptyLabel {
-    font-size: 9px;
-  }
-
-  .realityShelf .shelfSpace {
-    height: 83px;
   }
 
   .issueList li {
