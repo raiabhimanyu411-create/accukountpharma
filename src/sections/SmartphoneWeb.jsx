@@ -1,116 +1,93 @@
-import { CheckList, Icon, SectionHead } from '../components/ui.jsx'
+import { Icon, Lines } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import styles from '../pages/Home.module.css'
 import site from '../styles/Site.module.css'
 
-function Phone({ t }) {
+const POINT_ICONS = ['shelves', 'link', 'chart', 'document']
+
+function TaskList({ icon, title, items }) {
   return (
-    <div className={styles.phoneDevice}>
-      <div className={styles.phoneSpeaker}></div>
-      <div className={styles.phoneTop}>
-        ACCUKOUNT <span>PHARMA</span>
-      </div>
-      <h4>{t.phoneScreen}</h4>
-      <div className={styles.phoneScan}>
-        <Icon name="scan" />
-        <span>
-          <Icon name="box" />
-        </span>
-      </div>
-      <div className={styles.phoneSuccess}>
-        <Icon name="check" />
-        {t.phoneScan}
-      </div>
-      <div className={styles.phoneValue}>
-        <span>{t.quantity}</span>
-        <b>24</b>
-      </div>
-      <div className={styles.phoneMeta}>
-        <span>
-          {t.batch}
-          <b>LOT-A</b>
-        </span>
-        <span>
-          {t.expiryLabel}
-          <b>2027-01</b>
-        </span>
-      </div>
-      <div className={styles.phoneSave}>{t.saveCount}</div>
+    <div className={styles.dualGroup}>
+      <h3>
+        <Icon name={icon} />
+        {title}
+      </h3>
+      <ul data-stagger="">
+        {items.map((item, i) => (
+          <li key={i}>
+            <span className={styles.dualCheck}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5.5 12.5l4 4 9-9" />
+              </svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
 
-function MiniDashboard({ t }) {
-  const stats = [
-    [t.verified, 128],
-    [t.exceptions, 6],
-    [t.locations, 3],
-  ]
-
-  return (
-    <div className={styles.miniDashboard}>
-      <div className={styles.miniNav}>
-        <span className={styles.brandMini}>
-          ACCU<span>KOUNT</span>
-        </span>
-        <b>PHARMA</b>
-      </div>
-      <div className={styles.miniTitle}>{t.webScreen}</div>
-      <div className={styles.miniStats}>
-        {stats.map(([label, value]) => (
-          <div key={label}>
-            <small>{label}</small>
-            <strong data-count={value}>{value}</strong>
-          </div>
-        ))}
-      </div>
-      <div className={styles.miniChart}>
-        {[42, 65, 52, 82, 71, 94].map((h) => (
-          <i key={h} style={{ '--h': `${h}%` }}></i>
-        ))}
-      </div>
-      <div className={styles.miniLines}>
-        {[75, 90, 62].map((w) => (
-          <span key={w} style={{ '--w': `${w}%` }} data-grow=""></span>
-        ))}
-      </div>
-      <p>{t.example}</p>
-    </div>
-  )
-}
-
+// Smartphone execution + web control: the app on the phone, what each side does, the web
+// dashboard on the laptop, and four outcomes underneath.
 export function SmartphoneWeb() {
   const { t } = useLanguage()
+  const [title, subtitle, lead] = t.dual
 
   return (
     <section
-      className={`${styles.section} ${styles.pale}`}
+      className={`${styles.section} ${styles.dual}`}
       id="smartphone-web"
       aria-labelledby="smartphone-web-title"
     >
       <div className={site.wrap}>
-        <SectionHead content={t.dual} id="smartphone-web" />
-        <div className={styles.dualLayout}>
-          <div className={styles.dualCopy}>
-            <h3>
-              <Icon name="phone" />
-              {t.phoneTitle}
-            </h3>
-            <CheckList items={t.phoneList} />
-            <h3>
-              <Icon name="web" />
-              {t.webTitle}
-            </h3>
-            <CheckList items={t.webList} />
-          </div>
-          <div className={styles.devicesStage} data-reveal="">
-            <Phone t={t} />
-            <MiniDashboard t={t} />
-            <div className={styles.deviceSync}>
-              <Icon name="link" /> {t.strip[0].replace('\n', ' ')}
-            </div>
-          </div>
+        <div className={styles.dualHead}>
+          <Lines id="smartphone-web-title" className={styles.dualTitle} text={title} />
+          <span className={styles.dualRule} aria-hidden="true" />
+          <p className={styles.dualSubtitle} data-reveal="">
+            {subtitle}
+          </p>
+          <p className={styles.lead} data-reveal="">
+            {lead}
+          </p>
         </div>
+        <div className={styles.dualStage}>
+          <img
+            className={styles.dualPhone}
+            src="assets/app-phone.webp"
+            width="250"
+            height="500"
+            loading="lazy"
+            alt={t.phoneAlt}
+            data-reveal=""
+          />
+          <div className={styles.dualLists}>
+            <TaskList icon="phone" title={t.phoneTitle} items={t.phoneList} />
+            <TaskList icon="web" title={t.webTitle} items={t.webList} />
+          </div>
+          <img
+            className={styles.dualLaptop}
+            src="assets/app-laptop.webp"
+            width="770"
+            height="502"
+            loading="lazy"
+            alt={t.laptopAlt}
+            data-reveal=""
+          />
+        </div>
+        <ul className={styles.dualPoints} data-stagger="" data-draw-icons="">
+          {t.dualPoints.map(([name, note], i) => (
+            <li key={i}>
+              <span className={styles.dualPointIcon}>
+                <Icon name={POINT_ICONS[i]} />
+              </span>
+              <span>
+                <strong>{name}</strong>
+                {note}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

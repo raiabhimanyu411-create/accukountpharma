@@ -37,7 +37,7 @@ function App() {
       <Dialogs>
         <Header gallery={isGallery} />
         {isGallery ? <Gallery /> : <HomePage />}
-        <Footer />
+        <Footer gallery={isGallery} />
       </Dialogs>
     </LanguageContext>
   )

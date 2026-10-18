@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { usePageAnimations } from './lib/motion.js'
 import { Benefits } from './sections/Benefits.jsx'
-import { Canada } from './sections/Canada.jsx'
 import { Capabilities } from './sections/Capabilities.jsx'
 import { Challenge } from './sections/Challenge.jsx'
 import { Counting } from './sections/Counting.jsx'
@@ -64,7 +63,6 @@ export function HomePage() {
       <Benefits />
 
       {/* 14: visual canadian-pharmacies */}
-      <Canada />
 
       {/* 15: visual pilot */}
       <Pilot />

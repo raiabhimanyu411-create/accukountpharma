@@ -1,102 +1,79 @@
-import { useState } from 'react'
-import { CheckList, SectionHead, TabPanel, Tabs } from '../components/ui.jsx'
-import { expiryBatches } from '../data/samples.js'
+import { Badge, Icon, Lines, PillButton } from '../components/ui.jsx'
 import { useLanguage } from '../i18n.js'
 import styles from '../pages/Home.module.css'
 import site from '../styles/Site.module.css'
 
-// Tabs: expired, 0–30 days, 31–60 days, 61–90 days, all.
-const ALL_TAB = 4
-const TAB_RANGES = [
-  [-Infinity, -1],
-  [0, 30],
-  [31, 60],
-  [61, 90],
-]
+const ACTION_ICONS = ['clipboard', 'box', 'return', 'cart', 'trash', 'docCheck']
 
-function inTab(days, tab) {
-  if (tab === ALL_TAB) return true
-  const [min, max] = TAB_RANGES[tab]
-  return days >= min && days <= max
-}
-
-function barColour(days) {
-  if (days < 0) return '#8c2f34'
-  if (days <= 30) return '#b06028'
-  if (days <= 60) return '#a17b22'
-  return '#163e64'
-}
-
+// Expiry into action: the copy beside the action-plan photo, then the six actions.
 export function Expiry() {
   const { t } = useLanguage()
-  const [tab, setTab] = useState(ALL_TAB)
-  const batches = expiryBatches.filter((batch) => inTab(batch.days, tab))
-  const atRisk = batches.reduce((sum, batch) => sum + batch.qty, 0)
+  const [badge, title, lead] = t.expiry
 
   return (
     <section
-      className={`${styles.section} ${styles.pale}`}
+      className={`${styles.section} ${styles.expirySection}`}
       id="expiry"
       aria-labelledby="expiry-title"
     >
-      <div className={site.wrap}>
-        <SectionHead content={t.expiry} id="expiry" />
-        <div className={styles.expiryLayout}>
-          <div className={styles.expiryDemo} data-reveal="">
-            <span className={styles.sampleNote}>{t.demoLabel}</span>
-            <Tabs
-              id="expiry"
-              labels={t.expiryTabs}
-              active={tab}
-              onChange={setTab}
-              panelId="expiry-panel"
-              className={styles.expiryTabs}
-            />
-            <TabPanel id="expiry-panel" tabsId="expiry" active={tab}>
-              <div className={styles.expiryTotal}>
-                <span>{t.qtyAtRisk}</span>
-                <strong>{atRisk}</strong>
-              </div>
-              <div className={styles.expiryLines}>
-                {batches.length ? (
-                  batches.map((batch) => (
-                    <div className={styles.expiryLine} key={batch.lot}>
-                      <div>
-                        <b>{batch.lot}</b>
-                        <small>{batch.loc === 0 ? t.centreLocation : t.northLocation}</small>
-                      </div>
-                      <div className={styles.expiryBarTrack}>
-                        <span
-                          data-grow=""
-                          style={{
-                            width: `${Math.max(18, batch.qty * 2.4)}%`,
-                            background: barColour(batch.days),
-                          }}
-                        ></span>
-                      </div>
-                      <div>
-                        <b>
-                          {batch.qty} {t.units}
-                        </b>
-                        <small>
-                          {batch.days < 0 ? t.expiryTabs[0] : `${batch.days} ${t.expiryDays}`}
-                        </small>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p>{t.noBatches}</p>
-                )}
-              </div>
-            </TabPanel>
-          </div>
-          <div className={styles.expiryActions}>
-            <CheckList items={t.expiryActions} />
-            <p className={`${site.small} ${site.muted} ${styles.expiryActionsSmall}`}>
-              {t.expiryFoot}
+      <div className={styles.expiryTop}>
+        <img
+          className={styles.expiryPhoto}
+          src="assets/expiry-action.webp"
+          width="867"
+          height="628"
+          loading="lazy"
+          alt={t.expiryAlt}
+        />
+        <div className={site.wrap}>
+          <div className={styles.expiryCopy}>
+            <Badge>{badge}</Badge>
+            <Lines id="expiry-title" className={styles.expiryTitle} text={title} />
+            <span className={styles.dualRule} aria-hidden="true" />
+            <p className={styles.lead} data-reveal="">
+              {lead}
             </p>
+            <h3 data-reveal="">
+              {t.expirySubtitle.split('\n').map((line, i) => (
+                <span key={i}>
+                  {i > 0 && ' '}
+                  {line}
+                </span>
+              ))}
+            </h3>
+            <ul data-stagger="">
+              {t.expiryList.map((item, i) => (
+                <li key={i}>
+                  <span className={styles.dualCheck}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5.5 12.5l4 4 9-9" />
+                    </svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div data-reveal="">
+              <PillButton variant="outline" href="#pilot">
+                {t.cta}
+              </PillButton>
+            </div>
           </div>
         </div>
+      </div>
+      <div className={site.wrap}>
+        <ul className={styles.expiryActions} data-stagger="" data-draw-icons="">
+          {t.expiryActions.map(([name, note], i) => (
+            <li key={i}>
+              <span className={styles.dualPointIcon}>
+                <Icon name={ACTION_ICONS[i]} />
+              </span>
+              <strong>{name}</strong>
+              {note}
+            </li>
+          ))}
+        </ul>
+        <p className={styles.expiryFoot}>{t.expiryFoot}</p>
       </div>
     </section>
   )

@@ -30,7 +30,5 @@ npm run preview
 - `src/styles/`: CSS Modules for globals and the shell (`Shared`) and shared primitives (`Site`)
 - `src/pages/`: page-level CSS Modules (`Home`, `Gallery`)
 - `src/lib/motion.js`: GSAP scroll animations driven by `data-reveal`, `data-lines`, `data-stagger`, `data-clip`, `data-draw-icons`, `data-count` and `data-grow`; off with reduced motion
-- `src/data/samples.js`: illustrative demo data
-- `src/lib/speechNumber.js`: spoken English / French quantity parser
 
 The `visuals.html` page serves the visual gallery linked from the site footer.
