@@ -107,7 +107,7 @@ export function SmartphoneWeb() {
             <Phone t={t} />
             <MiniDashboard t={t} />
             <div className={styles.deviceSync}>
-              <Icon name="link" /> {t.strip[0]}
+              <Icon name="link" /> {t.strip[0].replace('\n', ' ')}
             </div>
           </div>
         </div>

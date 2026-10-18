@@ -21,7 +21,16 @@ export function Capabilities() {
               <span className={styles.capabilityIcon}>
                 <Icon name={CAPABILITY_ICONS[i]} />
               </span>
-              <strong>{item}</strong>
+              <strong>
+                {/* Each title breaks at the same point, so every box has a two-line title;
+                    narrow layouts run the parts together on one line. */}
+                {item.split('\n').map((part, j) => (
+                  <span key={j}>
+                    {j > 0 && ' '}
+                    {part}
+                  </span>
+                ))}
+              </strong>
               <small>{t.stripNotes[i]}</small>
             </li>
           ))}

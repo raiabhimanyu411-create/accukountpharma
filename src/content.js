@@ -15,11 +15,11 @@ export const translations = {
     heroCopy:
       'Know what arrived. Know what is on the shelf. Know what expires next. A bilingual smartphone and web platform that connects physical inventory evidence with your existing pharmacy systems.',
     strip: [
-      'Smartphone + Web',
-      'English + Français',
-      'UPC · GS1 DataMatrix · DIN OCR',
-      'No specialised scanning hardware',
-      'Works with existing systems',
+      'Smartphone\n+ Web',
+      'English\n+ Français',
+      'UPC GS1 DataMatrix\nDIN OCR',
+      'No Specialised\nScanning Hardware',
+      'Works with\nExisting Systems',
     ],
     stripNotes: [
       'Count on the phone, control on the web',
@@ -493,18 +493,18 @@ export const translations = {
     heroCopy:
       'Sachez ce qui est arrivé, ce qui est en rayon et ce qui expire bientôt. Une plateforme bilingue sur téléphone intelligent et sur le Web qui relie les preuves physiques à vos systèmes de pharmacie.',
     strip: [
-      'Téléphone intelligent + Web',
-      'English + Français',
-      'UPC · GS1 DataMatrix · DIN OCR',
-      'Sans lecteur spécialisé',
-      'Compatible avec vos systèmes',
+      'Téléphone intelligent\n+ Web',
+      'English\n+ Français',
+      'UPC GS1 DataMatrix\nDIN OCR',
+      'Sans lecteur\nspécialisé',
+      'Compatible avec\nvos systèmes',
     ],
     stripNotes: [
-      'Comptez sur le téléphone, pilotez sur le Web',
+      'Comptez sur mobile, pilotez sur le Web',
       'Entièrement bilingue pour chaque équipe',
       'Identifiez chaque format de produit',
       'Utilisez les téléphones que vous avez déjà',
-      'Complète vos systèmes de pharmacie, PDV et ERP',
+      'Complète vos systèmes, PDV et ERP',
     ],
     capabilitiesLabel: 'Conçu pour le fonctionnement des pharmacies',
     challenge: [

@@ -598,12 +598,19 @@ h1.heroTitles {
   width: 40px;
   height: 40px;
   border-radius: 11px;
-  background: #f6e9eb;
-  color: #8c2f34;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    transform 0.2s;
+  background: #8c2f34;
+  color: #fff;
+}
+
+.capability strong > span {
+  display: block;
+}
+
+/* One column: the boxes are wide, so the title parts run together on one line. */
+@media (max-width: 520px) {
+  .capability strong > span {
+    display: inline;
+  }
 }
 
 .capabilityIcon svg {
@@ -611,15 +618,8 @@ h1.heroTitles {
   height: 20px;
 }
 
-.capability:hover .capabilityIcon {
-  background: #8c2f34;
-  color: #fff;
-  transform: translateY(-2px);
-}
-
 .capability strong {
   grid-column: 2;
-  text-wrap: balance;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.3;
@@ -628,6 +628,7 @@ h1.heroTitles {
 
 .capability small {
   grid-column: 2;
+  text-wrap: balance;
   font-size: 11.5px;
   line-height: 1.45;
   color: #6f6f6f;
