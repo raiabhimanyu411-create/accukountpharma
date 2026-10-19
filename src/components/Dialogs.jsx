@@ -244,10 +244,61 @@ function PrivacyDialog({ ref, onClose }) {
   )
 }
 
-// Provides openContact / openPrivacy and returns focus to the opener when a dialog closes.
+// Product video; it plays when the dialog opens and pauses when it closes.
+function VideoDialog({ ref, onClose }) {
+  const { t } = useLanguage()
+  const dialogRef = useRef(null)
+  const videoRef = useRef(null)
+
+  useImperativeHandle(ref, () => ({
+    open() {
+      dialogRef.current.showModal()
+      videoRef.current.play().catch(() => {})
+    },
+  }))
+
+  function handleClose() {
+    videoRef.current.pause()
+    onClose()
+  }
+
+  return (
+    <dialog
+      ref={dialogRef}
+      id="video-dialog"
+      className={shell.videoDialog}
+      aria-label={t.videoTitle}
+      onClose={handleClose}
+      onClick={closeOnBackdrop}
+    >
+      <button
+        type="button"
+        className={shell.dialogClose}
+        aria-label={t.close}
+        onClick={() => dialogRef.current.close()}
+      >
+        ×
+      </button>
+      <video
+        ref={videoRef}
+        src="assets/accukount-demo.mp4"
+        poster="assets/accukount-demo-poster.webp"
+        width="1920"
+        height="1080"
+        controls
+        playsInline
+        preload="none"
+      />
+    </dialog>
+  )
+}
+
+// Provides openContact / openPrivacy / openVideo and returns focus to the opener when a
+// dialog closes.
 export function Dialogs({ children }) {
   const enquiryRef = useRef(null)
   const privacyRef = useRef(null)
+  const videoRef = useRef(null)
   const openerRef = useRef(null)
 
   const actions = useMemo(
@@ -259,6 +310,10 @@ export function Dialogs({ children }) {
       openPrivacy(opener) {
         openerRef.current = opener
         privacyRef.current.showModal()
+      },
+      openVideo(opener) {
+        openerRef.current = opener
+        videoRef.current.open()
       },
     }),
     [],
@@ -273,6 +328,7 @@ export function Dialogs({ children }) {
       {children}
       <EnquiryDialog ref={enquiryRef} onClose={restoreFocus} />
       <PrivacyDialog ref={privacyRef} onClose={restoreFocus} />
+      <VideoDialog ref={videoRef} onClose={restoreFocus} />
     </DialogContext>
   )
 }

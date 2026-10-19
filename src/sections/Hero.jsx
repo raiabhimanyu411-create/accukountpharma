@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { StoreBadges } from '../components/StoreBadges.jsx'
 import { Badge, ContactPill, PillButton } from '../components/ui.jsx'
+import { useDialogs } from '../dialog-context.js'
 import { useLanguage } from '../i18n.js'
 import { cx } from '../lib/cx.js'
 import { prefersReducedMotion } from '../lib/motion.js'
@@ -77,6 +78,7 @@ function SlideLines({ text }) {
 
 export function Hero() {
   const { t } = useLanguage()
+  const { openVideo } = useDialogs()
   const slides = t.heroSlides
   const { active, show, next, slide } = useHeroRotation(slides.length)
   const [paused, setPaused] = useState(false)
@@ -100,8 +102,8 @@ export function Hero() {
       <img
         className={styles.heroPhoto}
         src="assets/pharmacy-hero.webp"
-        width="1686"
-        height="810"
+        width="1690"
+        height="814"
         fetchPriority="high"
         alt={t.heroAlt}
       />
@@ -144,7 +146,12 @@ export function Hero() {
         </div>
         <div className={styles.heroActions} data-hero-item="">
           <ContactPill icon="rocket">{t.getStarted}</ContactPill>
-          <PillButton variant="outline" icon="play" href="#platform">
+          <PillButton
+            variant="outline"
+            icon="play"
+            aria-haspopup="dialog"
+            onClick={(e) => openVideo(e.currentTarget)}
+          >
             {t.learnMore}
           </PillButton>
         </div>

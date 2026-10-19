@@ -446,6 +446,7 @@ export const translations = {
     copyFallback: 'Select the draft and copy it manually.',
     recipient: 'Send to',
     close: 'Close',
+    videoTitle: 'ACCUKOUNT Pharma product video',
     privacyTitle: 'Your enquiry stays under your control.',
     privacyCopy:
       'The contact form creates a draft in your browser. We receive your details only when you choose to send the email. Website language is saved on this device so your preference is remembered. Interactive demonstrations use fictional sample data and do not connect to pharmacy records.',
@@ -964,6 +965,7 @@ export const translations = {
     copyFallback: 'Sélectionnez le brouillon et copiez-le manuellement.',
     recipient: 'Envoyer à',
     close: 'Fermer',
+    videoTitle: 'Vidéo de présentation ACCUKOUNT Pharma',
     privacyTitle: 'Votre demande reste sous votre contrôle.',
     privacyCopy:
       'Le formulaire crée un brouillon dans votre navigateur. Nous recevons vos coordonnées uniquement lorsque vous choisissez d’envoyer le courriel. La langue du site est enregistrée sur cet appareil. Les démonstrations utilisent des données fictives et ne sont reliées à aucun dossier de pharmacie.',

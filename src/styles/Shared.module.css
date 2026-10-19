@@ -595,6 +595,32 @@
   color: #8c2f34;
 }
 
+.videoDialog {
+  width: min(1040px, calc(100% - 32px));
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.videoDialog video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 52px);
+}
+
+.videoDialog .dialogClose {
+  z-index: 1;
+  right: 12px;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #000000a6;
+  color: #fff;
+  font-size: 24px;
+}
+
 :global(dialog label) {
   font-size: 11px;
   display: block;
